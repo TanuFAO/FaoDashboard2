@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive News Card Slider</title>
+
+  <!-- Slick CSS -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css" />
+
+  <style>
+
+ * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+    body {
+        font-family: "Open Sans", sans-serif;
+      background-color: white;
+	
+	 padding-left: 200px;
+
+    }
+
+    .padding {
+      padding: 5rem;
+    }
+
+    @media (max-width:991.98px) {
+      .padding {
+        padding: 1.5rem;
+      }
+    }
+
+    @media (max-width:767.98px) {
+      .padding {
+        padding: 1rem;
+      }
+    }
+
+.media {
+  flex: 0 0 auto;
+}
+
+
+.side-header {
+      width: 200px;
+      background-color: #333;
+      color: white;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; /* Distribute logo and links */
+      padding: 20px;
+      box-sizing: border-box;
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index:1000;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .logo h2 {
+      margin: 0;
+      font-size: 20px;
+      font-family: Arial, sans-serif;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin: 10px 0;
+      font-size: 16px;
+      font-family: Arial, sans-serif;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #ffcc00;
+    }
+    .card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  background-color: #fff;
+  border: 1px solid #d2d2dc;
+  border-radius: 11px;
+  box-shadow: 0px 0px 5px 0px rgb(161, 163, 164);
+  height: 450px; /* FIXED card height */
+  overflow: hidden;
+}
+
+.card-body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* To separate title and text nicely */
+  padding: 1rem;
+  overflow: hidden;
+}
+
+   .card-title {
+  font-size: 19px;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color:Black;
+}
+
+.card-text {
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color:Black;
+}
+
+
+    .card .card-body {
+      padding: 1rem 1rem;
+    }
+
+    p {
+      font-size: 0.875rem;
+      margin-bottom: .5rem;
+      line-height: 1.5rem;
+    }
+
+    h5 {
+      font-size: 19px;
+      font-weight: 100;
+      margin-bottom: 0.5rem;
+    }
+
+    .items {
+      width: 90%;
+      margin: 50px auto 0 auto; /* reduced top margin */
+    }
+
+    .slick-slide {
+      margin: 10px;
+    }
+   .items {
+  width: 90%;
+  margin: 50px auto 0 auto;
+}
+    .media-content {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-size: cover;
+      background-position: center;
+      background-color: rgba(120, 120, 120, .1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .profile-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-top-left-radius: 11px;
+      border-top-right-radius: 11px;
+    }
+
+    
+    .custom-footer {
+  background-color: #0f3d3e;
+  color: #white;
+
+  padding: 15px 10px;
+  //box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
+  width: 100%;
+}
+
+     /* Footer */
+    footer {
+      background-color: #00B89f;
+      color: white;
+      padding: 40px 20px;
+      width: 100%;
+    }
+
+    .custom-footer .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .custom-footer .col {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .custom-footer a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .custom-footer a:hover {
+      text-decoration: underline;
+    }
+
+    .custom-footer h5 {
+      margin-bottom: 10px;
+ font-size: 1rem;
+    }
+
+    .custom-footer p {
+      margin-bottom: 10px;
+      color:white;
+       font-size: 0.8rem;
+    }
+    .sidebar-toggle {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      z-index: 1100;
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      font-size: 20px;
+      border-radius: 4px;
+      display: none;
+    }
+.nav-link.active {
+  color: #ffcc00;
+  font-weight: bold;
+}
+
+
+  @media (max-width: 768px) {
+  body {
+    padding-left: 0;
+  }
+
+  .side-header {
+    left: -200px;
+  }
+
+  .side-header.open {
+    left: 0;
+  }
+
+  .sidebar-toggle {
+    display: block;
+  }
+}
+
+
+  </style>
+</head>
+
+<body>
+
+<!-- Sidebar toggle button for mobile -->
+  <button class="sidebar-toggle d-md-none" onclick="toggleSidebar()">☰</button>
+
+
+ <div class="side-header">
+    <div class="logo">
+       <img src="logo1.png"> 
+     
+    </div>
+   <div class="nav-links">
+  <a href="index.html" class="nav-link" onclick="closeSidebar()">Home</a>
+  <a href="FourBetters.html" class="nav-link" onclick="closeSidebar()">Country Programming Framework (2023–2027)</a>
+  <a href="ProjectPortfolio.html" class="nav-link" onclick="closeSidebar()">Project Portfolio</a>
+  <a href="publicationtest.html" class="nav-link" onclick="closeSidebar()">Publication</a>
+  <a href="success.html" class="nav-link" onclick="closeSidebar()">Success Stories</a>
+  <a href="News.html" class="nav-link" onclick="closeSidebar()">News</a>
+</div>
+
+
+  </div>
+
+
+<div class="items">
+
+  <div class="card">
+<a href="https://www.fao.org/india/programmes-and-projects/success-stories/winter-vegetables/en/" target="_blank" style="display: block; height: 100%; text-decoration: none;">
+    <div class="media">
+     
+      <img class="profile-image" src="Succeess\WinterVeg.jpg">
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Enhancing Crop Yield and Food Security in Mizoram through Winter Vegetables with FAO’s Green-Ag FFS</h5>
+      <p class="card-text">Mizoram, a lush, hilly state in northeast India, has long been known for its vibrant biodiversity and unique agricultural practices. However, over the years, farming in the region has faced challenges due to unpredictable climatic conditions and cha.....</p>
+    </div>
+</a>
+  </div>
+
+  <div class="card">
+  <a href="https://www.fao.org/india/programmes-and-projects/success-stories/piggery-mizoram/en/" target="_blank" style="display: block; height: 100%; text-decoration: none;">
+
+    <div class="media">
+      <img class="profile-image" src="Piggery_2.jpg">
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Transforming livelihoods through sustainable and improved pig farming in the Dampa Thorangtlang landscape, Mizoram</h5>
+      <p class="card-text">Nestled in the rugged hills of Mizoram, the Dampa-Thorangtlang landscape is a diverse ecological region characterized by dense forests, cascading streams, and rich biodiversity. This landscape not only supports unique flora and fauna but also sustains traditional agrarian communities that are deeply connected to their landscape.</p>
+    </div>
+</a>
+  </div>
+
+  <div class="card">
+    <a href="https://www.fao.org/india/programmes-and-projects/success-stories/nature/en/" target="_blank" style="display: block; height: 100%; text-decoration: none;">
+
+
+    <div class="media">
+      <img class="profile-image" src="Succeess\curse.jpg">
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Nature never curses</h5>
+      <p class="card-text">subharathi lives in a remote village in Anantapur District of Andhra Pradesh. Her village is surrounded by farm fields all around and a large irrigation tank in the middle. In the last few years there has been acute scarcity of water more so for drinking purpose. "Nature has been unkind to us and the rainfall has failed to bless the village"</p>
+    </div>
+ </a>
+  </div>
+
+  
+
+  <div class="card">
+<a href="https://www.fao.org/india/programmes-and-projects/success-stories/fishermen/en/" target="_blank" style="display: block; height: 100%; text-decoration: none;">
+    <div class="media">
+      <img class="profile-image" src="crops.jpg">
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Substituting crops for better groundwater management</h5>
+      <p class="card-text">Mannem Buddaiah hails from Mannemvaripalle village in Prakasam district of Andhra Pradesh. He ekes out a living by farming on his 5-acre farmland. Most of the farmlands in this region are largely rain-fed and as there is no surface water sources in the village, farmers depended solely on groundwater for irrigation</p>
+    </div>
+</a>
+  </div>
+
+</div>
+
+
+
+<!-- Footer -->
+  <footer class="custom-footer">
+   <div class="row">
+        <div class="col">
+          <h5>About FAO-India</h5>
+          <p>Learn more about FAO's mission and work in India to support in transforming India's agrifood systems.</p>
+          <a href="https://www.fao.org/india/en/" target="_blank">Visit FAO-India Website</a>
+        </div>
+        <div class="col">
+          <h5>Quick Links</h5>
+          <ul style="list-style: none; padding-left: 0;">
+            <li><a href="https://greenag.nmsa.gov.in/" target="_blank" class="text-light" style="font-size:0.8rem">GEF-6: Green-Ag</a></li>
+          <li><a href="https://gef7folur.da.gov.in/" target="_blank" class="text-light"  style="font-size:0.8rem">GEF-7: FOLUR</a></li>
+
+
+
+      
+          </ul>
+        </div>
+        <div class="col">
+          <h5>Connect With Us</h5>
+          <p>Stay informed via our social channels and email newsletters.</p>
+          <a href="https://x.com/FAO" target="_blank" class="text-light d-block">X</a>
+        </div>
+        <div class="col">
+           <h5>FAO Representation in India</h5>
+        <p>55 Lodi Estate<br>Max Muller Marg<br>New Delhi- 110 003<br>Tel: +91-11-46532201<br>FAO-IN@fao.org</p>
+
+        </div>
+      </div>
+
+  </footer>
+
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Slick JS -->
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<script>
+  $(document).ready(function(){
+    $('.items').slick({
+      dots: true,
+      infinite: true,
+      speed: 800,
+      autoplay: true,
+      autoplaySpeed: 2500,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+    });
+  });
+
+</script>
+<script>
+  function toggleSidebar() {
+    document.querySelector('.side-header').classList.toggle('open');
+  }
+
+  function closeSidebar() {
+    document.querySelector('.side-header').classList.remove('open');
+  }
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const currentPath = window.location.pathname.split("/").pop();
+    document.querySelectorAll(".nav-link").forEach(link => {
+      if (link.getAttribute("href") === currentPath) {
+        link.classList.add("active");
+      }
+    });
+  });
+</script>
+
+
+
+
+</body>
+</html>

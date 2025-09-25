@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project Portfolio</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: "Open Sans", sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .side-header {
+      width: 200px;
+      background-color: #333;
+      color: white;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
+      box-sizing: border-box;
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 1050;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .logo img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+    }
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin: 10px 0;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover {
+      color: #ffcc00;
+    }
+    .nav-link.active {
+      color: #ffcc00;
+      font-weight: bold;
+    }
+
+    .content {
+      margin-left: 200px;
+      padding: 30px;
+      flex: 1;
+    }
+    @media (max-width: 768px) {
+      .side-header {
+        left: -200px;
+        transition: left 0.3s;
+      }
+      .side-header.open {
+        left: 0;
+      }
+      .content {
+        margin-left: 0;
+        padding: 20px;
+      }
+    }
+
+    .sidebar-toggle {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      z-index: 1100;
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      font-size: 20px;
+      border-radius: 4px;
+      display: none;
+    }
+    @media (max-width: 768px) {
+      .sidebar-toggle {
+        display: block;
+      }
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      text-align: center;
+      color: #005f7f;
+      margin-top: 5px;
+    }
+    .chart-container {
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      max-width: 1000px;
+    }
+
+    footer {
+      background-color: #0f3d3e;
+      color: white;
+      padding: 20px;
+      margin-left: 200px;
+    }
+    footer .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    footer .col {
+      flex: 1;
+      min-width: 200px;
+    }
+    @media (max-width: 768px) {
+      footer {
+        margin-left: 0;
+        text-align: center;
+      }
+      footer .row {
+        flex-direction: column;
+        gap: 20px;
+      }
+      footer .col {
+        min-width: 100%;
+      }
+    }
+    footer a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.8rem;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    footer h5 {
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+    footer p {
+      margin-bottom: 10px;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <button class="sidebar-toggle d-md-none" onclick="toggleSidebar()">☰</button>
+  <div class="side-header">
+    <div class="logo"><img src="logo1.png" alt="Logo" /></div>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="FourBetters.html" class="nav-link">Country Programming Framework (2023–2027)</a>
+      <a href="#" class="nav-link active">Project Portfolio</a>
+      <a href="publicationtest.html" class="nav-link">Publication</a>
+      <a href="success.html" class="nav-link">Success Stories</a>
+      <a href="News.html" class="nav-link">News</a>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="content">
+    <h2>Project Portfolio</h2>
+
+
+
+
+
+    <!-- Chart 1: Top 10 Project Budgets -->
+      <div class="chart-container">
+      <h4>Top 10 Projects by Budget (USD)</h4>
+      <canvas id="top10BudgetChart" height="150"></canvas>
+    </div>
+
+    <!-- Chart 2: Number of Projects by State -->
+    <div class="chart-container" style="max-width: 600px; margin: auto;">
+      <h4>Number of Projects by State</h4>
+      <canvas id="projectCountChart"></canvas>
+    </div>
+
+    <!-- Chart 3: Male/Female Participation -->
+    <div class="chart-container">
+      <h4>Project-wise Male and Female Participation</h4>
+      <canvas id="genderChart" height="120"></canvas>
+    </div>
+
+    <!-- Chart 4: Top 10 Projects by Budget (Vertical Bar) -->
+   
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="row">
+      <div class="col">
+        <h5>About FAO-India</h5>
+        <p>Learn more about FAO's mission and work in India.</p>
+        <a href="https://www.fao.org/india/en/" target="_blank">Visit FAO-India Website</a>
+      </div>
+      <div class="col">
+        <h5>Quick Links</h5>
+        <ul style="list-style: none; padding-left: 0;">
+          <li><a href="https://greenag.nmsa.gov.in/" target="_blank">GEF-6: Green-Ag</a></li>
+          <li><a href="https://gef7folur.da.gov.in/" target="_blank">GEF-7: FOLUR</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h5>Connect With Us</h5>
+        <a href="https://x.com/FAO" target="_blank">X</a>
+      </div>
+      <div class="col">
+        <h5>FAO Representation in India</h5>
+        <p>
+          55 Lodi Estate<br />
+          Max Muller Marg<br />
+          New Delhi- 110 003<br />
+          Tel: +91-11-46532201<br />
+          FAO-IN@fao.org
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleSidebar() {
+      document.querySelector(".side-header").classList.toggle("open");
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      // ----------------------------
+      // Dummy Project Data
+      // ----------------------------
+      const projects = [
+        { id: "TCP/IND/3901", state: "Pan India", budget: 232000 },
+        { id: "TCP/IND/3902", state: "Pan India", budget: 100000 },
+        { id: "TCP/IND/3903", state: "Rajasthan, Uttarakhand", budget: 169000 },
+        { id: "TCP/IND/3904", state: "Sikkim, Telangana, Jharkhand", budget: 100000 },
+        { id: "GCP/IND/183/GEF", state: "Rajasthan, Madhya Pradesh", budget: 33558716 },
+        { id: "GCP/IND/184/GFF", state: "Chhattisgarh, Odisha", budget: 20366973 },
+      ];
+
+      // Dummy Male/Female data (match by project id)
+      const maleData = [710, 39, 119, 16, 66, 12];
+      const femaleData = [290, 15, 43, 16, 4, 1];
+
+      // Format with commas (e.g., 33,100,000)
+      function formatNumberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
+
+      // ----------------------------
+      // Chart 1: Top 10 Projects
+      // ----------------------------
+      const topProjects = projects.sort((a, b) => b.budget - a.budget).slice(0, 10);
+      const colors = [
+        "#007bff",
+        "#28a745",
+        "#ffc107",
+        "#dc3545",
+        "#17a2b8",
+        "#6f42c1",
+        "#fd7e14",
+        "#20c997",
+        "#6c757d",
+        "#6610f2",
+      ];
+
+      new Chart(document.getElementById("projectBudgetChart"), {
+        type: "bar",
+        data: {
+          labels: topProjects.map((p) => p.id),
+          datasets: [
+            {
+              label: "Budget (USD)",
+              data: topProjects.map((p) => p.budget),
+              backgroundColor: colors,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => "$ " + formatNumberWithCommas(ctx.raw),
+              },
+            },
+          },
+          scales: { y: { beginAtZero: true } },
+        },
+      });
+
+      // ----------------------------
+// Chart 2: Projects by State (Pie Chart)
+// ----------------------------
+
+const stateProjectCount = {
+  "Pan India": 4,
+  "Rajasthan": 4,
+  "Uttarakhand": 2,
+  "Sikkim": 1,
+  "Telangana": 3,
+  "Jharkhand": 1,
+  "Odisha": 5,
+  "Gujarat": 3,
+  "Hyderabad": 1,
+  "Maharashtra": 4,
+  "Delhi": 1,
+  "New Delhi": 1,
+  "Tamil Nadu": 1,
+  "Gujrat": 1,
+  "Daman": 1,
+  "Dieu": 1,
+  "Madhya Pradesh": 5,
+  "MP": 2,
+  "Mizoram": 1,
+  "Chhattisgarh": 2,
+  "Haryana": 2,
+  "Punjab": 2,
+  "Andhra Pradesh": 3,
+  "Karnataka": 1,
+  "Assam": 1,
+  "Uttar Pradesh": 1,
+  "Kerala": 1,
+  "Meghalaya": 1,
+  "Nagaland": 1
+};
+
+// Optional: merge "MP" into "Madhya Pradesh"
+if (stateProjectCount["MP"]) {
+  stateProjectCount["Madhya Pradesh"] += stateProjectCount["MP"];
+  delete stateProjectCount["MP"];
+}
+
+const pieColors = [
+  "#007bff", "#28a745", "#ffc107", "#dc3545", "#17a2b8", "#6f42c1",
+  "#fd7e14", "#20c997", "#6c757d", "#6610f2", "#ff6384", "#36a2eb",
+  "#ff9f40", "#4bc0c0", "#9966ff", "#c9cbcf", "#e7e9ed", "#ffcd56",
+  "#33cc33", "#ff66cc", "#cc6600", "#3399ff", "#cc0066", "#999966",
+  "#6699cc", "#cc3333", "#9999ff", "#993333", "#cccc00", "#ffcc00"
+];
+
+new Chart(document.getElementById("projectCountChart"), {
+  type: "pie",
+  data: {
+    labels: Object.keys(stateProjectCount),
+    datasets: [{
+      data: Object.values(stateProjectCount),
+      backgroundColor: pieColors,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false 
+      },
+      tooltip: {
+        callbacks: {
+          label: (ctx) => `${ctx.label}: ${ctx.raw} project${ctx.raw > 1 ? 's' : ''}`
+        }
+      },
+      title: {
+        display: true,
+        text: "Number of Projects by State"
+      }
+    }
+  }
+});
+
+
+      // ----------------------------
+      // Chart 3: Male/Female Participation (Stacked Bar)
+      // ----------------------------
+      new Chart(document.getElementById("genderChart"), {
+        type: "bar",
+        data: {
+          labels: projects.map((p) => p.id),
+          datasets: [
+            { label: "Female", data: femaleData, backgroundColor: "pink" },
+            { label: "Male", data: maleData, backgroundColor: "blue" },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { position: "top" },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => ctx.dataset.label + ": " + formatNumberWithCommas(ctx.raw),
+              },
+            },
+          },
+          scales: {
+            y: { beginAtZero: true, stacked: true },
+            x: { stacked: true },
+          },
+        },
+      });
+
+      // ----------------------------
+      // Chart 4: Top 10 Projects by Budget (Vertical Bar)
+      // ----------------------------
+      const top10Projects = [
+        { name: "GCP/IND/183/GEF", budget: 33558716 },
+        
+        { name: "GCP/IND/184/GFF", budget: 20366973 },
+        { name: "GCP /IND/11228/GFF", budget: 14039667 },
+        { name: "GCP /IND/11415/GFF", budget: 10409174 },
+        { name: "GCP /IND/11403/GFF", budget: 8641096 },
+        { name: "GCP /IND/202/PAF", budget: 4673000 },
+        { name: "UNJP/IND/201/UNJ", budget: 1800000 },
+        { name: "GCP/IND/189/GCR", budget: 921659 },
+        { name: "OSRO/RAS/403/USA", budget: 380382 },
+        { name: "TCP/IND/3901", budget: 232000 },
+      ];
+
+      const colorsTop10 = [
+        "#007bff",
+        "#28a745",
+        "#ffc107",
+        "#dc3545",
+        "#17a2b8",
+        "#6f42c1",
+        "#fd7e14",
+        "#20c997",
+        "#6c757d",
+        "#6610f2",
+      ];
+
+      new Chart(document.getElementById("top10BudgetChart"), {
+        type: "bar",
+        data: {
+          labels: top10Projects.map((p) => p.name),
+          datasets: [
+            {
+              label: "Budget (INR)",
+              data: top10Projects.map((p) => p.budget),
+              backgroundColor: colorsTop10,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => "$ " + formatNumberWithCommas(ctx.raw),
+              },
+            },
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                callback: (value) => "$ " + formatNumberWithCommas(value),
+              },
+              title: {
+                display: true,
+                text: "Budget in USD",
+              },
+            },
+            x: {
+              ticks: {
+                autoSkip: false,
+              },
+            },
+          },
+        },
+      });
+    });
+  </script>
+</body>
+</html>

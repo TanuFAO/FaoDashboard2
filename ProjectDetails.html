@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Table</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- CSS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+  <style>
+	html, body {
+  	height: 100%;
+  	margin: 0;
+  	padding: 0;
+  	display: flex;
+ 	 flex-direction: column;
+	}
+
+    body {
+      font-family: "Open Sans", sans-serif;
+      padding-left: 200px; /* Space for vertical header */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+
+    }
+    .table-container {
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    }
+    .table tr {
+	font-size: 14px;
+    }
+   .table thead th {
+  background-color: #005f7f !important;
+  color: white !important;
+}
+    .table tbody tr:hover {
+      background-color: #f1f1f1;
+    }
+    .title {
+      font-size: 20px;
+      margin-bottom: 20px;
+      font-weight: 600;
+      color: #333;
+    }
+
+main {
+  flex: 1;
+}
+
+ 
+.side-header {
+      width: 200px;
+      background-color: #333;
+      color: white;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; /* Distribute logo and links */
+      padding: 20px;
+      box-sizing: border-box;
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index:1050;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .logo h2 {
+      margin: 0;
+      font-size: 20px;
+      font-family: Arial, sans-serif;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin: 10px 0;
+      font-size: 16px;
+      font-family: Arial, sans-serif;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #ffcc00;
+    }
+   
+    .custom-footer {
+  background-color: #0f3d3e;
+  color: #white;
+
+  padding: 15px 10px;
+  //box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
+  width: 100%;
+}
+
+     /* Footer */
+    footer {
+      background-color: #00B89f;
+      color: white;
+      padding: 40px 20px;
+      width: 100%;
+    }
+
+    .custom-footer .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .custom-footer .col {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .custom-footer a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .custom-footer a:hover {
+      text-decoration: underline;
+    }
+
+    .custom-footer h5 {
+      margin-bottom: 10px;
+     font-size: 1rem;
+    }
+
+    .custom-footer p {
+      margin-bottom: 10px;
+      color:white;
+       font-size: 0.8rem;
+    }
+    .sidebar-toggle {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      z-index: 1100;
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      font-size: 20px;
+      border-radius: 4px;
+      display: none;
+    }
+    .nav-link.active 
+   {
+  color: #ffcc00;
+  font-weight: bold;
+	}
+
+
+
+
+
+  @media (max-width: 768px) {
+  body {
+    padding-left: 0;
+  }
+
+  .side-header {
+    left: -200px;
+  }
+
+  .side-header.open {
+    left: 0;
+  }
+
+  .sidebar-toggle {
+    display: block;
+  }
+}
+
+
+
+
+  </style>
+</head>
+<body>
+
+<button class="sidebar-toggle d-md-none" onclick="toggleSidebar()">☰</button>
+ <div class="side-header">
+    <div class="logo">
+       <img src="logo1.png"> 
+     
+    </div>
+  <div class="nav-links">
+  <a href="index.html" class="nav-link" onclick="closeSidebar()">Home</a>
+  <a href="FourBetters.html" class="nav-link" onclick="closeSidebar()">Country Programming Framework (2023–2027)</a>
+  <a href="ProjectPortfolio.html" class="nav-link" onclick="closeSidebar()">Portfolio</a>
+  <a href="publicationtest.html" class="nav-link" onclick="closeSidebar()">Publication</a>
+  <a href="success.html" class="nav-link" onclick="closeSidebar()">Success Stories</a>
+  <a href="News.html" class="nav-link" onclick="closeSidebar()">News</a>
+</div>
+
+
+  </div>
+
+
+<main class="flex-grow-1">
+
+  <div class="container table-container">
+
+    <div class="title">Project Details</div>
+<div class="mb-3 d-flex align-items-center">
+  <label for="stateFilter" class="form-label me-2 mb-0"><strong>State:</strong></label>
+  <select id="stateFilter" class="form-select form-select-sm" style="width: 200px;" onchange="filterTableByState()">
+    <option value="">All</option>
+    <option value="Pan India">Pan India</option>
+    <option value="Rajasthan">Rajasthan</option>
+    <option value="Madhya Pradesh">Madhya Pradesh</option>
+    <option value="Uttarakhand">Uttarakhand</option>
+    <option value="Mizoram">Mizoram</option>
+    <option value="Punjab">Punjab</option>
+    <option value="Chhattisgarh">Chattisgarh</option>
+    <option value="Odisha">Odisha</option>
+    <option value="Haryana">Haryana</option>
+    <option value="Andhra Pradesh">Andhra Pradesh</option>
+    <option value="Maharashtra">Maharashtra</option>
+    <option value="Karnataka">Karnataka</option>
+    <option value="Assam">Assam</option>
+    <option value="Uttar Pradesh">Uttar Pradesh</option>
+    <option value="Gujarat">Gujarat</option>
+    <option value="Kerala">Kerala</option>
+    <option value="Meghalaya">Meghalaya</option>
+    <option value="Nagaland">Nagaland</option>
+     <option value="Hyderabad">Hyderabad</option>
+    <option value="Telangana">Telangana</option>
+    <option value="Tamil Nadu">Tamil Nadu</option>
+    <option value="Delhi">Delhi</option>
+    
+  </select>
+</div>
+    <div class="table-responsive">
+      <table class="table table-striped align-middle">
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Project ID</th>
+            <th>Project Name</th>
+            <th>State</th>
+            <th style ="width:110px;">Budget (USD)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>TCP/IND/3901</td>
+            <td>Building Capacity of policy makers to mobilize investment for resilient and low emission agri-foods in india under Article-6 of the UNFCCC Paris Agreement & Voluntary Carbon Markets </td>
+            <td>Pan India</td>
+            <td> 2,32,000 </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>TCP/IND/3902</td>
+            <td>TCPF:Support for improved monitoring of sustainable agriculture</td>
+            <td>Pan India</td>
+            <td> 1,00,000 </td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>TCP/IND/3903</td>
+            <td>Enhancing livestock Keepers income through certification of milk and dairy products to increase market accesss in selected sites</td>
+            <td>Rajasthan, Uttarakhand</td>
+            <td> 1,69,000 </td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>TCP/IND/3904</td>
+            <td>TCPF:Support to developing protocols for quality planning material and certification of nurseries for timber and non-timber agroforestry species</td>
+            <td>Sikkim, Telangana, Jharkhand</td>
+            <td> 1,00,000 </td>
+          </tr>
+	   <tr>
+            <td>5</td>
+            <td>TCP/IND/3905</td>
+            <td>Support for quality seed of local landraces/farmers varities(LRs/FVs) through community-managed seed system in odisha and other rainfed areas</td>
+            <td>Odisha</td>
+            <td>  2,13,000  </td>
+          </tr>
+	<tr>
+            <td>6</td>
+            <td>TCP/IND/3906</td>
+            <td>Establishing pathways to integratenutritional and therapeutic potential of non-bovine milk</td>
+            <td>Gujarat, Rajasthan</td>
+            <td>  2,16,000 </td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>TCP/IND/4001</td>
+            <td>TCPF:Strengthing nutrition-sensitive agriculture and food systemin india by piloting and rolling out the FAO ENACT course on nutrition  education to academic institution</td>
+            <td>Hyderabad, Telangana, Maharashtra, Delhi, New Delhi, Tamil Nadu </td>
+            <td> 1,69,000 </td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>TCP/IND/4002</td>
+            <td>Developing voluntary Carbon Fund for agriculture sector in India within NABARD</td>
+            <td>Pan India</td>
+            <td>  3,36,000  </td>
+          </tr>
+	   <tr>
+            <td>9</td>
+            <td>TCP/IND/4003</td>
+            <td>TCPF:Technical Cooperation for the strengthing of blue ports</td>
+            <td>Gujrat,Daman ,Dieu</td>
+            <td> 1,00,000 </td>
+          </tr>
+	  <td>10</td>
+            <td>TCP/IND/4004</td>
+            <td>Enhancing water use effeciency through smart irrigation for climate resilient agriculture and sustainable development </td>
+            <td>Pan India</td>
+            <td>  3,00,000  </td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td>GCP/IND/183/GFF</td>
+            <td>Green Agriculture: Transforming Indian Agriculture for global environment benefits and conservation of critical biodiversity and forest landscape(FSP)</td>
+            <td>Rajashthan, Madhya Pradesh, Mizoram,<br> Odisha, Uttarakhand</td>
+            <td>  3,35,58,716 </td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>GCP/IND/184/GFF</td>
+            <td>Transforming Rice-Wheat Food System In india(FSP)</td>
+            <td>Chhattisgarh, Odisha, Haryana, Punjab</td>
+            <td> 2,03,66,973 </td>
+          </tr>
+          <tr>
+            <td>13</td>
+            <td>MTF/IND/198/STF</td>
+            <td>Spice</td>
+            <td>Rajasthan, Gujarat, Andhra Pradesh,Madhya Pradesh
+ 
+            <td>  5,08,830  </td>
+          </tr>
+	   <tr>
+            <td>14</td>
+	    <td>OSRO/IND/203/USA</td>
+            <td>Global Health Security (GHS) Project-Immediate Technical assistancefor animal health systems to address emerging and priority zoonotic disease and heath threats in india</td>
+      
+            <td>Maharashtra, Karnataka, Madhya Pradesh, Assam, Odisha, Uttar Pradesh, Rajasthan, Gujarat, Haryana, and Kerala, Meghalaya, and Nagaland</td>
+            <td>  12,00,000  </td>
+          </tr>
+	<tr>
+            <td>15</td>
+            <td>UNJP/RAS/399/EC</td>
+            <td>Fleming Fund</td>
+            <td></td>
+            <td> 39,74,443  </td>
+          </tr>
+          <tr>
+            <td>16</td>
+            <td>GCP/IND/189/GCR</td>
+            <td>Agriculture Sector Readiness for enhanced climate finance at sub-national level in India (GCF RP)</td>
+            <td>Chhattisgarh, Madhya Pradesh, Odisha, Punjab</td>
+            <td>  9,21,659  </td>
+          </tr>
+          <tr>
+            <td>17</td>
+            <td>UNJP/IND/201/UNJ</td>
+            <td>Enhancing Resilience to climate change of migrant & vulnerable households in the coastal areas India</td>
+            <td>Odisha and Telangana</td>
+            <td>  18,00,000   </td>
+          </tr>
+	   <tr>
+            <td>18</td>
+            <td>GCP /IND/202/PAF</td>
+            <td>Health Security for Pandemic Preparedness and Operationalizing One Health</td>
+            <td></td>
+            <td> 46,73,000 </td>
+          </tr>
+	  <tr>
+            <td>19</td>
+	    <td>GCP /IND/11228P/GFF</td>
+            <td>Transforming Andhra Pradesh aquaculture to a sustainable, reduced footprint and climate resilient food system</td>
+      
+            <td>Andhra Pradesh</td>
+            <td>   3,00,000   </td>
+          </tr>
+	<tr>
+            <td>20</td>
+            <td>GCP /IND/11228/GFF</td>
+            <td>Transforming Andhra Pradesh aquaculture to a sustainable, reduced footprint and climate resilient food system</td>
+            <td>Andhra Pradesh</td>
+            <td>  1,40,39,667  </td>
+          </tr>
+          <tr>
+            <td>21</td>
+            <td>GCP /IND/11403/GFF
+</td>
+            <td>GEF 8 Livestock</td>
+            <td></td>
+            <td>   86,41,096 
+ </td>
+          </tr>
+          <tr>
+            <td>22</td>
+            <td>GCP /IND/11403P/GFF</td>
+            <td>GEF 8 Livestosk PPG</td>
+            <td></td>
+            <td>   2,00,000  </td>
+          </tr>
+	   <tr>
+            <td>23</td>
+            <td>GCP /IND/11415P/GFF</td>
+            <td>Central Highland PPG</td>
+            <td>Maharashtra, MP</td>
+            <td>  3,00,000 </td>
+	    
+          </tr>
+	  <tr>
+            <td>24</td>
+            <td>GCP /IND/11415/GFF</td>
+            <td>Central Highland</td>
+            <td>Maharashtra, MP</td>
+            <td>  1,04,09,174  </td>
+          </tr>
+	    <td>25</td>
+            <td>OSRO /RAS/403/USA</td>
+            <td>Pandemic Fund from the World Bank Infrastructure Component</td>
+            <td></td>
+            <td>   13,09,460   </td>
+          </tr>
+	   
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+
+
+<footer class="custom-footer">
+   <div class="row">
+        <div class="col">
+          <h5>About FAO-India</h5>
+          <p>Learn more about FAO's mission and work in India to support in transforming India's agrifood systems.</p>
+          <a href="https://www.fao.org/india/en/" target="_blank">Visit FAO-India Website</a>
+        </div>
+        <div class="col">
+          <h5>Quick Links</h5>
+          <ul style="list-style: none; padding-left: 0;">
+             <li><a href="https://greenag.nmsa.gov.in/" target="_blank" class="text-light" style="font-size:0.8rem">GEF-6: Green-Ag</a></li>
+          <li><a href="https://gef7folur.da.gov.in/" target="_blank" class="text-light"  style="font-size:0.8rem">GEF-7: FOLUR</a></li>
+
+
+           
+          </ul>
+        </div>
+        <div class="col">
+          <h5>Connect With Us</h5>
+          <p>Stay informed via our social channels and email newsletters.</p>
+          
+          <a href="https://x.com/FAO" target="_blank" class="text-light d-block">X</a>
+
+        </div>
+        <div class="col">
+          <h5>FAO Representation in India</h5>
+        <p>55 Lodi Estate<br>Max Muller Marg<br>New Delhi- 110 003<br>Tel: +91-11-46532201<br>FAO-IN@fao.org</p>
+
+        </div>
+      </div>
+
+  </footer>
+
+ <script>
+    
+  
+   function toggleSidebar() {
+    const sidebar = document.querySelector('.side-header');
+    sidebar.classList.toggle('open');
+  }
+
+  function closeSidebar() {
+    const sidebar = document.querySelector('.side-header');
+    sidebar.classList.remove('open');
+  }
+  </script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const currentPath = window.location.pathname.split("/").pop();
+    document.querySelectorAll(".nav-link").forEach(link => {
+      if (link.getAttribute("href") === currentPath) {
+        link.classList.add("active");
+      }
+    });
+  });
+</script>
+
+<script>
+function filterTableByState() {
+  const filter = document.getElementById("stateFilter").value.toLowerCase();
+  const table = document.querySelector("table");
+  const rows = table.querySelectorAll("tbody tr");
+
+  rows.forEach(row => {
+    const stateCell = row.cells[3].textContent.toLowerCase();
+    const stateList = stateCell.split(',').map(s => s.trim());
+
+    const match = stateList.some(state => state.includes(filter));
+    row.style.display = (match || filter === "") ? "" : "none";
+  });
+}
+</script>
+
+<script>
+  // Read query parameter and apply filter on page load
+  window.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const stateParam = urlParams.get('state');
+
+    if (stateParam) {
+      const select = document.getElementById("stateFilter");
+      
+      // Try to match and select the dropdown option
+      const options = Array.from(select.options);
+      const matchOption = options.find(opt => 
+        opt.text.toLowerCase().includes(stateParam.toLowerCase())
+      );
+      if (matchOption) {
+        matchOption.selected = true;
+      }
+
+      // Trigger filter
+      document.getElementById("stateFilter").dispatchEvent(new Event('change'));
+    }
+  });
+</script>
+
+<script>
+$(document).ready(function() {
+  $('#stateFilter').select2({
+    dropdownAutoWidth: true,
+    width: '200px',
+    dropdownCssClass: 'custom-select2-dropdown'
+  });
+});
+
+</script>
+
+
+
+</body>
+</html>

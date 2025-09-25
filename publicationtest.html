@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Responsive Publications</title>
+  <link rel="stylesheet" href="main1/css/bootstrap.min.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+    body {
+    font-family: "Open Sans", sans-serif;
+      background-color: #f0f0f0;
+      padding-left: 200px;
+   
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-align: left;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #008AD8;
+      text-align: left;
+    }
+
+    .thumbnail-gallery img {
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .thumbnail-gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .side-header {
+      width: 200px;
+      background-color: #333;
+      color: white;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
+      box-sizing: border-box;
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 1000;
+      transition: left 0.3s ease;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .logo h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin: 10px 0;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #ffcc00;
+    }
+
+    .custom-thumbnail {
+      height: 240px;
+      object-fit: cover;
+      border: 1px solid #ccc;
+    }
+
+    .learn-more-button {
+      margin: 20px auto;
+      text-align: center;
+    }
+
+    .learn-more-button button {
+      background-color: #2b6cb0;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.3s;
+      padding: 10px 20px;
+    }
+
+    .learn-more-button button:hover {
+      background-color: #225a9c;
+    }
+
+   .main-content {
+  flex: 1;
+  padding: 30px 20px;
+}
+
+    .custom-footer {
+  background-color: #0f3d3e;
+  color: #white;
+
+  padding: 15px 10px;
+  //box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
+  width: 100%;
+}
+
+     /* Footer */
+    footer {
+      background-color: #00B89f;
+      color: white;
+      padding: 40px 20px;
+      width: 100%;
+    }
+
+    .custom-footer .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .custom-footer .col {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .custom-footer a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .custom-footer a:hover {
+      text-decoration: underline;
+    }
+
+    .custom-footer h5 {
+      margin-bottom: 10px;
+ font-size: 1rem;
+    }
+
+    .custom-footer p {
+      margin-bottom: 10px;
+      color:white;
+       font-size: 0.8rem;
+    }
+    .sidebar-toggle {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      z-index: 1100;
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      font-size: 20px;
+      border-radius: 4px;
+      display: none;
+    }
+.nav-link.active {
+  color: #ffcc00;
+  font-weight: bold;
+}
+
+
+
+  @media (max-width: 768px) {
+  body {
+    padding-left: 0;
+  }
+
+  .side-header {
+    left: -200px;
+  }
+
+  .side-header.open {
+    left: 0;
+  }
+
+  .sidebar-toggle {
+    display: block;
+  }
+}
+
+
+  </style>
+</head>
+<body>
+  <!-- Sidebar toggle button for mobile -->
+  <button class="sidebar-toggle d-md-none" onclick="toggleSidebar()">☰</button>
+
+  <!-- Sidebar -->
+  <div class="side-header" id="sidebar">
+    <div class="logo">
+      <img src="logo1.png" alt="Logo">
+    </div>
+   <div class="nav-links">
+  <a href="index.html" class="nav-link" onclick="closeSidebar()">Home</a>
+  <a href="FourBetters.html" class="nav-link" onclick="closeSidebar()">Country Programming Framework (2023–2027)</a>
+  <a href="ProjectPortfolio.html" class="nav-link" onclick="closeSidebar()">Project Portfolio</a>
+  <a href="publicationtest.html" class="nav-link" onclick="closeSidebar()">Publication</a>
+  <a href="success.html" class="nav-link" onclick="closeSidebar()">Success Stories</a>
+  <a href="News.html" class="nav-link" onclick="closeSidebar()">News</a>
+</div>
+  </div>
+
+   <!-- Main Content -->
+  <div class="container-fluid main-content">
+    <div class="row mb-2">
+      <div class="col-12 text-center">
+        <h1>Publications</h1>
+       
+      </div>
+    </div>
+
+    <!-- Image Grid -->
+    <div class="row g-2 thumbnail-gallery">
+
+	 <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-2">
+        <a href="#" onclick="openPDF('https://openknowledge.fao.org/server/api/core/bitstreams/08053f79-51b8-4015-97d5-c4a76236a2ba/content')">
+          <img src="imges/Horticulture.jpg" class="img-fluid custom-thumbnail" alt="Publication 10">
+        </a>
+      </div>
+    
+     <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-2">
+        <a href="#" onclick="openPDF('https://openknowledge.fao.org/server/api/core/bitstreams/4f5fb67f-3952-47d1-94f7-99c9fa14074e/content')">
+          <img src="imges/Newpublication.jpg" class="img-fluid custom-thumbnail" alt="Publication 11">
+        </a>
+      </div>
+     
+     <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-2">
+        <a href="#" onclick="openPDF('https://openknowledge.fao.org/server/api/core/bitstreams/aba98ab0-4836-4729-9f2f-c057026a3221/content')">
+          <img src="imges/FPIC.jpg" class="img-fluid custom-thumbnail" alt="Publication 1">
+        </a>
+      </div>
+
+      <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-2">
+        <a href="#" onclick="openPDF('https://openknowledge.fao.org/server/api/core/bitstreams/4e08d38d-b1f5-4c74-8478-7cbd61a1e90a/content')">
+          <img src="imges/Publications1.png" class="img-fluid custom-thumbnail" alt="Publication 1">
+        </a>
+      </div>
+      <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-2">
+        <a href="#" onclick="openPDF('https://openknowledge.fao.org/server/api/core/bitstreams/bee46bf7-a2c0-400c-88a5-bc26dcd90e29/content')">
+          <img src="imges/Publication2.png" class="img-fluid custom-thumbnail" alt="Publication 2">
+        </a>
+      </div>
+      <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-2">
+        <a href="#" onclick="openPDF('https://openknowledge.fao.org/server/api/core/bitstreams/1656ce43-f3aa-4fc5-b3b5-b93b36e6c7cf/content')">
+          <img src="imges/Publication3.jpg" class="img-fluid custom-thumbnail" alt="Publication 3">
+        </a>
+      </div>
+      <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-2">
+        <a href="#" onclick="openPDF('https://openknowledge.fao.org/server/api/core/bitstreams/5758d593-d033-495f-aa63-5f20741194d1/content')">
+          <img src="imges/Publications4.jpg" class="img-fluid custom-thumbnail" alt="Publication 4">
+        </a>
+      </div>
+      <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-2">
+        <a href="#" onclick="openPDF('https://openknowledge.fao.org/server/api/core/bitstreams/2abd0f14-eef5-4630-8cbb-338623fb1eb2/content')">
+          <img src="imges/Publications5.jpg" class="img-fluid custom-thumbnail" alt="Publication 5">
+        </a>
+      </div>
+      <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-2">
+        <a href="#" onclick="openPDF('https://openknowledge.fao.org/server/api/core/bitstreams/f95db088-7f44-48f8-bcd7-78b2691c5379/content')">
+          <img src="imges/Publications6.jpg" class="img-fluid custom-thumbnail" alt="Publication 6">
+        </a>
+      </div>
+      <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-2">
+        <a href="#" onclick="openPDF('https://openknowledge.fao.org/server/api/core/bitstreams/c68dc812-1fc0-4271-be3d-2fe916cdc4bb/content')">
+          <img src="imges/Publications7.jpg" class="img-fluid custom-thumbnail" alt="Publication 7">
+        </a>
+      </div>
+      <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-2">
+        <a href="#" onclick="openPDF('https://openknowledge.fao.org/server/api/core/bitstreams/a7754a06-7a80-45af-ac33-f9a8a437fe2d/content')">
+          <img src="imges/Publications8.jpg" class="img-fluid custom-thumbnail" alt="Publication 8">
+        </a>
+      </div>
+      <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-2">
+        <a href="#" onclick="openPDF('https://openknowledge.fao.org/server/api/core/bitstreams/3459ed25-6412-4752-8715-e94d8f5b4e2a/content')">
+          <img src="imges/Publications9.jpg" class="img-fluid custom-thumbnail" alt="Publication 9">
+        </a>
+      </div>
+     
+      
+    </div>
+
+
+
+
+    <div class="learn-more-button">
+      <a href="https://www.fao.org/india/programmes-and-projects/success-stories/en/" target="_blank" rel="noopener noreferrer">
+        <button>LEARN MORE</button>
+      </a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="custom-footer">
+   <div class="row">
+        <div class="col">
+          <h5>About FAO-India</h5>
+          <p>Learn more about FAO's mission and work in India to support in transforming India's agrifood systems.</p>
+          <a href="https://www.fao.org/india/en/" target="_blank">Visit FAO-India Website</a>
+        </div>
+        <div class="col">
+          <h5>Quick Links</h5>
+          <ul style="list-style: none; padding-left: 0;">
+           <li><a href="https://greenag.nmsa.gov.in/" target="_blank" class="text-light" style="font-size:0.8rem">GEF-6: Green-Ag</a></li>
+          <li><a href="https://gef7folur.da.gov.in/" target="_blank" class="text-light"  style="font-size:0.8rem">GEF-7: FOLUR</a></li>
+
+          </ul>
+        </div>
+        <div class="col">
+          <h5>Connect With Us</h5>
+          <p>Stay informed via our social channels and email newsletters.</p>
+         <a href="https://x.com/FAO" target="_blank" class="text-light d-block">X</a>
+
+        </div>
+        <div class="col">
+           <h5>FAO Representation in India</h5>
+        <p>55 Lodi Estate<br>Max Muller Marg<br>New Delhi- 110 003<br>Tel: +91-11-46532201<br>FAO-IN@fao.org</p>
+
+        </div>
+      </div>
+
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    let currentPopup = null;
+
+    function openPDF(url) {
+      if (currentPopup && !currentPopup.closed) {
+        currentPopup.close();
+      }
+
+      const width = 1000;
+      const height = 700;
+      const left = (window.innerWidth - width) / 2;
+      const top = (window.innerHeight - height) / 2;
+
+      currentPopup = window.open(
+        url,
+        'pdfPopup',
+        `toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=${width},height=${height},top=${top},left=${left}`
+      );
+    }
+
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+    }
+
+    function closeSidebar() {
+      if (window.innerWidth <= 768) {
+        document.getElementById('sidebar').classList.remove('open');
+      }
+    }
+  </script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const currentPath = window.location.pathname.split("/").pop();
+    document.querySelectorAll(".nav-link").forEach(link => {
+      if (link.getAttribute("href") === currentPath) {
+        link.classList.add("active");
+      }
+    });
+  });
+</script>
+  <script src="main1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

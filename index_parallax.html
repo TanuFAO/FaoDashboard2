@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAO-India Dashboard</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <style>
+    .parallax-section {
+      position: relative;
+      background-attachment: fixed;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+      transition: background-position 0.3s ease;
+    }
+    .parallax-content {
+      text-align: center;
+      padding: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header container-fluid bg-dark text-white py-3">
+    <div class="d-flex justify-content-between align-items-center">
+      <img src="main/images/FAO logo_white.png" alt="FAO Logo" height="60">
+      <h4 class="m-0">Welcome to FAO-India Dashboard</h4>
+      <img src="Fao80_white.png" alt="FAO 80 Logo" height="65">
+    </div>
+  </div>
+
+  <!-- Parallax Section 1 -->
+  <section class="parallax-section" style="background-image: url('banner/banner1.jpg');">
+    <div class="parallax-content">
+      <h1>Welcome to FAO India</h1>
+      <p>Transforming Agrifood Systems</p>
+    </div>
+  </section>
+
+  <!-- Parallax Section 2 -->
+  <section class="parallax-section" style="background-image: url('banner/banner2.jpg');">
+    <div class="parallax-content">
+      <h2>Project Portfolio</h2>
+      <p>Implemented Across 28 States</p>
+    </div>
+  </section>
+
+  <!-- Existing main content here -->
+  <main class="container my-5">
+    <!-- Include your dashboard content (KPIs, charts, videos, news, etc.) -->
+  </main>
+
+  <!-- Footer -->
+  <footer class="custom-footer mt-auto w-100 bg-dark text-white text-center py-3">
+    <p class="mb-0">FAO India &copy; 2025</p>
+  </footer>
+
+  <!-- Parallax Scroll Script -->
+  <script>
+    window.addEventListener('scroll', () => {
+      document.querySelectorAll('.parallax-section').forEach((section) => {
+        const offset = window.pageYOffset;
+        section.style.backgroundPositionY = `${offset * 0.5}px`;
+      });
+    });
+  </script>
+</body>
+</html>

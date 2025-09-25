@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAO-India Dashboard</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+
+
+<!-- Font Awesome CDN -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!-- GLightbox CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+
+
+
+
+
+ <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+ <link rel="stylesheet" href="style.css">
+<script type='text/javascript' src='https://www.google.com/jsapi'></script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+     //background: linear-gradient(to bottom, #0f3d3e, #1e3c58);
+     background:White;
+     font-family: "Open Sans", sans-serif;
+      color: Black;
+       
+
+    }
+  body.idle-mode .idle-section {
+  transition: opacity 1s ease-in-out;
+}
+
+ .swiper {
+      width: 100%;
+      height: 600px;
+    }
+
+    .swiper-slide {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      cursor: pointer;
+      /* Start with no transform */
+      transform-origin: center center;
+      transition: transform 0.3s ease-out;
+    }
+
+    /* Zoom animation keyframes */
+    @keyframes zoomInOut {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1); /* Zoom in to 110% */
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    /* Class that triggers zoom animation */
+    .zoom-animate {
+      animation: zoomInOut 3s ease-in-out forwards;
+    }
+
+    .slide-caption {
+      position: absolute;
+      bottom: 30px;
+      left: 40px;
+      color: #fff;
+      font-size: 28px;
+      font-weight: bold;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+      pointer-events: none; /* so clicks pass through caption */
+     bottom: 30px;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: #fff;
+    }
+
+    .swiper-pagination-bullet {
+      background: #fff;
+    }
+
+ #map-container {
+      width: 100%;          /* Or a fixed size like 600px */
+      max-width: 800px;     /* Limit the maximum width */
+      height: auto;
+      margin: auto;         /* Center the div horizontally */
+      
+    }
+   .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  gap: 1rem;
+  background-color: #0f3d3e !important;
+  width: 100% !important;
+}
+
+
+    
+   .header .right-logo img {
+      max-height: 100px;
+    }
+
+.header .left-logo,
+.header .right-logo {
+  flex: 0 0 auto;
+}
+.header .welcome-text {
+  font-size: 2.0rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+  flex-grow: 1;
+  text-align: center;
+
+ }  
+    
+.custom-card {
+  height: 200px; /* adjust size */
+}
+
+    .card-section {
+      padding: 2rem;
+    }
+
+    .card-img-overlay {
+      background: rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 1rem;
+  
+    }
+
+    .custom-card img {
+      object-fit: cover;
+      height: 100%;
+      border-radius: 0.5rem;
+    }
+
+    .custom-card .card-title {
+      font-size: 1.5rem;
+      color: white;
+      text-align:center;
+      margin-top:50px;
+     
+    }
+
+
+ .video-carousel-scroll {
+    scroll-snap-type: x mandatory;
+  }
+
+  .video-card {
+    width: 250px;
+    position: relative;
+    scroll-snap-align: start;
+    cursor: pointer;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .video-card img {
+    transition: transform 0.3s ease;
+  }
+
+  .video-card:hover img {
+    transform: scale(1.05);
+  }
+
+  .play-icon {
+    position: absolute;
+    pointer-events: none;
+  }
+
+
+    .wrapper {
+  position: relative;
+    
+
+ 
+}
+
+.news__item {
+  width: 370px;
+  height: 450px;
+  background: #ffffff15;
+  border-radius: 1rem;
+  overflow: hidden;
+  padding: 1rem;
+  color: #ffffff;
+   background: linear-gradient(to bottom, #0f3d3e, #1e3c58);
+
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, background 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* ensures left alignment */
+  justify-content: flex-start; /* avoids stretching */
+  text-align: left; 
+}
+.news__item:hover {
+  background: white;
+  transform: translateY(-5px);
+}
+.news__title {
+  font-size: 18px;
+  font-weight: 500;
+  opacity: 0.7;
+  margin-top: 10px;
+  margin-bottom: 6px;
+  transition: opacity 0.3s;
+}
+
+.news__txt {
+  margin: 10px 0;
+  line-height: 1.6em;
+  font-size: 11px;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+.news__img img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  margin-bottom: 1rem;
+}
+.news-slider__arrow {
+  background: #27ae60;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin: 0 0.25rem;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.news-slider__arrow:hover {
+  background: white;
+}
+
+.news-slider__item {
+  padding: 0 15px; /* Adds horizontal space between slides */
+  box-sizing: border-box;
+}
+.news-heading {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: black;
+  margin-left:70px;
+  margin-bottom: 10pxrem;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+  margin-top:40px;
+}
+.news-section {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.news-slider {
+  margin-top: 0.5rem; /* Fine-tune spacing */
+}
+
+
+.video-card {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #000;
+  position: relative;
+}
+
+.video-thumbnail {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+canvas {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 10px;
+}
+ .custom-footer {
+  background-color: #0f3d3e;
+  color: white;
+
+  padding: 15px 10px;
+  /*box-shadow: 0 -1px 5px rgba(0,0,0,0.1);*/
+  width: 100%;
+}
+.custom-footer p{
+  font-size: 0.8rem;
+}
+
+.custom-footer h5{
+  font-size: 1rem;
+}
+ .chart-wrapper {
+      display: flex;
+      justify-content: center;
+    }
+
+    .gender-chart {
+      display: flex;
+      gap: 40px;
+      align-items: flex-end;
+      position: relative;
+    }
+
+    .gender-block {
+      position: relative;
+      width: 120px;
+      height: 180px;
+      cursor: pointer;
+      transition: transform 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .gender-block:hover {
+      transform: scale(1.05);
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .label {
+      margin-top: 10px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+  .percentage-text {
+  position: absolute;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+
+    #maleFillRect,
+    #femaleFillRect {
+      transition: y 1s ease-in-out;
+    }
+
+    .tooltip {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 6px 10px;
+      border-radius: 4px;
+      position: absolute;
+      bottom: 110%;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      font-size: 12px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 10;
+    }
+
+    .gender-block:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+.chart-box {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 10px;
+}
+.responsive-gap {
+  margin-right: 20px;
+}
+
+
+ #stateModal .modal-body {
+    color: black;
+  }
+  #stateModal .modal-title {
+    color: black;
+  }
+.vertical-label-stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.slide-caption {
+  bottom: 200px;
+}
+@media (max-width: 768px) {
+  .news-slider__arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 576px) {
+  .responsive-gap {
+    margin-right: 30px;
+  }
+}
+
+@media (min-width: 768px) {
+  .responsive-gap {
+    margin-right: 40px;
+  }
+}
+
+@media (min-width: 992px) {
+  .responsive-gap {
+    margin-right: 50px;
+  }
+}
+
+.swiper {
+  height: 600px;
+}
+
+/* Medium screens (tablets) */
+@media (max-width: 992px) {
+  .swiper {
+    height: 400px;
+  }
+}
+
+/* Small screens (mobile) */
+@media (max-width: 576px) {
+  .swiper {
+    height: 300px;
+  }
+}
+
+
+   
+  </style>
+
+<style>
+  .idle-section {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  .idle-section.show {
+    opacity: 1;
+  }
+</style>
+
+</head>
+<body>
+
+
+<div class="header container-fluid">
+
+  <div class="left-logo">
+    <img src="main/images/FAO logo_white.png" alt="FAO Logo" style="height: 75px;" />
+  </div>
+
+  <div class="welcome-text text-center flex-grow-1">
+    <h4 class="m-0">Welcome to FAO-India Dashboard</h4>
+  </div>
+
+  <div class="right-logo">
+    <img src="Fao80_white.png" alt="FAO 80 Logo" style="height: 85px;" />
+  </div>
+</div>
+
+  <main class="flex-grow-1">
+
+  <!-- Swiper -->
+  <div id="banner-section" class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <a href="banner/banner1.jpg" class="glightbox" data-gallery="banner">
+          <img src="banner/banner1.jpg" alt="Slide 1" />
+        </a>
+        <div class="slide-caption"></div>
+      </div>
+      <div class="swiper-slide">
+        <a href="banner/banner2.jpg" class="glightbox" data-gallery="banner">
+          <img src="banner/banner2.jpg" alt="Slide 2" />
+        </a>
+        <div class="slide-caption"></div>
+      </div>
+      <div class="swiper-slide">
+        <a href="banner/banner3.jpg" class="glightbox" data-gallery="banner">
+          <img src="banner/banner3.jpg" alt="Slide 3" />
+        </a>
+        <div class="slide-caption"></div>
+      </div>
+      <div class="swiper-slide">
+        <a href="banner/banner4.jpg" class="glightbox" data-gallery="banner">
+          <img src="banner/banner4.jpg" alt="Slide 4" />
+        </a>
+        <div class="slide-caption"></div>
+      </div>
+      <div class="swiper-slide">
+        <a href="banner/banner5.jpg" class="glightbox" data-gallery="banner">
+          <img src="banner/banner5.jpg" alt="Slide 4" />
+        </a>
+        <div class="slide-caption"></div>
+      </div>
+      <div class="swiper-slide">
+        <a href="banner/banner6.jpg" class="glightbox" data-gallery="banner">
+          <img src="banner/banner6.jpg" alt="Slide 4" />
+        </a>
+        <div class="slide-caption"></div>
+      </div>
+
+
+    </div>
+
+    <!-- Pagination -->
+   
+
+    <!-- Navigation -->
+     </div>
+
+
+<!-- Charts Section -->
+<!-- Charts Section -->
+<div id="kpi-section" class="container my-5">
+  <!-- Top Row -->
+  <div class="mb-4">
+   <h5 class="text-start mb-3">FAO Portfolio in India</h5>
+  <div class="row text-center align-items-stretch">
+
+      
+   <div class="col-md-4 mb-3 d-flex">
+       <a href="ProjectDetails.html" class="text-black text-decoration-none w-100">
+
+    <div class="p-3 rounded w-100" style="background-color: #FB8A9C;">
+          
+          <i class="fa-solid fa-sack-dollar fs-2 mb-2"></i>
+          <div>Total Budget</div>
+          <strong>$ 100 million</strong>
+         
+        </div>
+	 </a>
+      </div>
+
+      <div class="col-md-4 mb-3 d-flex">
+               <a href="ProjectDetails.html" class="text-black text-decoration-none w-100">
+        <div class="p-3 rounded w-100" style="background-color: #ffcc99;">
+           <i class="bi bi-kanban fs-2 mb-2"></i>
+          <div>Total Projects</div>
+          <strong>25</strong>
+	</div>
+	</a>
+      </div>
+      <div class="col-md-4 mb-3 d-flex">
+       <a href="ProjectDetails.html" class="text-black text-decoration-none w-100">
+        <div class="p-3 rounded w-100" style="background-color: #FEE580;">
+          <i class="fa-solid fa-list fs-2 mb-2"></i>
+          <div>Total States</div>
+          <strong>28</strong>
+        </div>
+</a>
+      </div>
+
+</div>
+</div>
+
+  <!-- Bottom Row -->
+  <div>
+   
+       <div class="kpi-slider">
+    <div class="row text-center align-items-stretch">
+      <div class="col-md-4 mb-3 d-flex">
+       <div class="p-3 rounded w-100" style="background-color: #4BC0C0;">
+
+          <i class="bi bi-people-fill fs-2 mb-2"></i>
+          <div>Total Beneficiary</div>
+          <strong>230</strong>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3 d-flex">
+        <div class="p-3 rounded w-100" style="background-color: #E7DDFF;">
+          <i class="bi bi-clipboard-check fs-2 mb-2"></i>
+          <div>Area covered</div>
+          <strong>0</strong>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3 d-flex">
+        <div class="p-3 rounded w-100" style="background-color: #EFC3CA;">
+          <i class="bi bi-journal-richtext fs-2 mb-2"></i>
+          <div>Total Workshops</div>
+          <strong>100</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div id="chart-section" class="container my-5">
+
+ <div class="row g-4">
+    <div class="col-md-6" style="height:436px;padding-top:20px;">
+    
+     <div class="card shadow-sm p-3" style="height: 210px; overflow-y: False;">    
+  <div class="chart-wrapper chart-box">
+
+    <div class="gender-chart">
+     
+      <!-- Male -->
+      <div class="gender-block">
+        <div class="tooltip" style="background-color:white;color:black;">Male: 100 out of 230</div>
+        <div class="percentage-text" id="malePercentText">80%</div>
+        <svg viewBox="0 0 64 128">
+          <defs>
+            <clipPath id="maleClip">
+              <rect id="maleFillRect" x="0" y="128" width="64" height="128" />
+            </clipPath>
+          </defs>
+          <path d="M32 0a12 12 0 1 1 0 24 12 12 0 0 1 0-24zm20 28H12a4 4 0 0 0-4 4v20a4 4 0 0 0 4 4h4v60a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4V64h8v52a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4V56h4a4 4 0 0 0 4-4V32a4 4 0 0 0-4-4z" fill="#e0f2f1"/>
+          <path d="M32 0a12 12 0 1 1 0 24 12 12 0 0 1 0-24zm20 28H12a4 4 0 0 0-4 4v20a4 4 0 0 0 4 4h4v60a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4V64h8v52a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4V56h4a4 4 0 0 0 4-4V32a4 4 0 0 0-4-4z"
+                fill="#009688" clip-path="url(#maleClip)" />
+        </svg>
+        <div class="label">Male</div>
+      </div>
+
+      <!-- Female -->
+      <div class="gender-block">
+        <div class="tooltip" style="background-color:white;color:black;">Female: 130 out of 230</div>
+        <div class="percentage-text" id="femalePercentText">75%</div>
+        <svg viewBox="0 0 64 128">
+          <defs>
+            <clipPath id="femaleClip">
+              <rect id="femaleFillRect" x="0" y="128" width="64" height="128" />
+            </clipPath>
+          </defs>
+          <path d="M32 0a12 12 0 1 1 0 24 12 12 0 0 1 0-24zM24 28h16l8 48H16l8-48zM24 76h16v40H24z"
+                fill="#ffe0b2"/>
+          <path d="M32 0a12 12 0 1 1 0 24 12 12 0 0 1 0-24zM24 28h16l8 48H16l8-48zM24 76h16v40H24z"
+                fill="#d84315" clip-path="url(#femaleClip)" />
+        </svg>
+        <div class="label">Female</div>
+      </div>
+</div>
+    </div>
+  </div>
+
+
+<br>
+     <div class="card shadow-sm p-3" style="height: 200px; overflow-y: False;"> 
+
+      <canvas id="barChart" class="w-100 mt-4" style="height: 180px;"></canvas>
+</div>
+  <div class="text-end mt-2">
+   <!-- <a href="#" style="color:blue; font-size:11px;">For more details</a> --!>
+
+  </div>
+    </div>
+    <div class="col-md-6">
+     
+        <div id="visualization" style="width: 100%; height: 432px;"></div>
+    
+    </div>
+ 
+</div>
+</div>
+
+
+ <div class="modal fade" id="stateModal" tabindex="-1" aria-labelledby="stateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="stateModalLabel">Project Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modalBodyContent">
+          <!-- Filled dynamically via JS -->
+        </div>
+     <a id="viewDetailsLink" class="btn btn-link text-primary">View Full Details</a>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Card Grid -->
+  <!-- Card Grid -->
+<div id="cards-section" class="container card-section">
+  <div class="row g-4">
+    <div class="col-12 col-md-6">
+      <a href="FourBetters.html" class="text-decoration-none">
+        <div class="card bg-dark text-white custom-card">
+          <img src="card1.jpg" class="card-img" alt="Four Betters">
+          
+        </div>
+      </a>
+    </div>
+
+
+    <div class="col-12 col-md-6">
+      <a href="#" class="text-decoration-none">
+        <div class="card bg-dark text-white custom-card">
+          <img src="card3.jpg" class="card-img" alt="Project Portfolio">
+         
+        </div>
+      </a>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <a href="publicationtest.html" class="text-decoration-none">
+        <div class="card bg-dark text-white custom-card">
+          <img src="card2.jpg" class="card-img" alt="Publications">
+          
+        </div>
+      </a>
+    </div>
+
+    
+
+    <div class="col-12 col-md-6">
+      <a href="success.html" class="text-decoration-none">
+        <div class="card bg-dark text-white custom-card">
+          <img src="card4.jpg" class="card-img" alt="Success Stories">
+          
+        </div>
+      </a>
+    </div>
+
+    
+  </div>
+</div>
+
+
+
+
+<!-- Modal -->
+
+<div id="video-section" class="container my-5">
+  <h5 class="text-start mb-3">Videos</h5>
+
+  <div class="row g-4">
+   <div class="col-md-6">
+  <div class="video-card position-relative w-100 h-100" data-video-url="https://www.youtube.com/watch?v=Ll6j_2Q3dM8">
+    <img src="https://img.youtube.com/vi/Ll6j_2Q3dM8/0.jpg" class="img-fluid w-100 h-100 object-fit-cover rounded video-thumbnail" alt="Video Thumbnail">
+    <div class="play-icon position-absolute top-50 start-50 translate-middle">
+      <i class="fa-solid fa-play fa-3x text-white"></i>
+    </div>
+  </div>
+<div class="text-end mt-2">
+    <a href="https://www.youtube.com/@faoindia853/videos" target="_blank" style="color:blue; font-size:11px;">For more Videos</a>
+  </div>
+</div>
+
+<div class="col-md-6">
+  <div class="video-card position-relative w-100 h-100" data-video-url="https://www.youtube.com/watch?v=pyO3AIOvj1k">
+    <img src="https://img.youtube.com/vi/pyO3AIOvj1k/0.jpg" class="img-fluid w-100 h-100 object-fit-cover rounded video-thumbnail" alt="Video Thumbnail">
+    <div class="play-icon position-absolute top-50 start-50 translate-middle">
+      <i class="fa-solid fa-play fa-3x text-white"></i>
+    </div>
+  </div>
+</div>
+</div>
+<!-- Video Modal -->
+<div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content bg-dark">
+      <div class="modal-body p-0">
+        <video id="popupVideo" class="w-100" controls autoplay></video>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="news-section" class="container my-5"">
+<div class="news-section text-center">
+ <h1 class="news-heading">News</h1>
+  <div class="news-slider">
+    <div class="news-slider__wrp swiper-wrapper">
+      <!-- Slide 1 -->
+      <div class="news-slider__item swiper-slide">
+        <a href="https://www.fao.org/india/news/detail-events/en/c/1736551/" target="blank" class="news__item">
+          <div class="news__title">FAO hosts knowledge-sharing session</div>
+          <p class="news__txt">A 35-member African delegation participating in the International Training Programme on ‘Livelihood Promotion through Self-Employment at the Grassroots Level’, conducted by the.....</p>
+          <div class="news__img"><img src="news1.jpg" alt="news"></div>
+        </a>
+      </div>
+      <div class="news-slider__item swiper-slide">
+        <a href="https://www.fao.org/india/news/detail-events/en/c/1735654/" target="blank" class="news__item">
+          <div class="news__title">Strengthening the Milk Value Chain in Chambal, Madhya Pradesh</div>
+          <p class="news__txt">The Chambal landscape in Madhya Pradesh, spanning the Morena and Sheopur districts, faces significant ecological and socio-economic challenges. </p>
+          <div class="news__img"><img src="milk.jpg" alt="news"></div>
+        </a>
+      </div>
+      <div class="news-slider__item swiper-slide">
+        <a href="https://www.fao.org/india/news/detail-events/en/c/1735374/" target="blank" class="news__item">
+          <div class="news__title">Nature’s groceries and safety net: how forests help feed the world better</div>
+          <p class="news__txt">Opinion Editorial by Dr QU Dongyu, Director-General of the Food and Agriculture Organization of the United Nations (FAO Our forests play a vital role in feeding the world.</p>
+          <div class="news__img"><img src="nature.jpg" alt="news"></div>
+        </a>
+      </div>
+      <div class="news-slider__item swiper-slide">
+        <a href="https://www.fao.org/india/news/detail-events/en/c/1735379/" target="blank" class="news__item">
+          <div class="news__title">Forests and agriculture can thrive together.</div>
+          <p class="news__txt">FAO’s Green-Ag project in India integrates forests and agriculture through agroecology across five diverse landscapes: Mizoram, Uttarakhand, Madhya Pradesh, Odisha, and Rajasthan.</p>
+          <div class="news__img"><img src="forest.jpg" alt="news"></div>
+        </a>
+      </div>
+
+       <div class="news-slider__item swiper-slide">
+        <a href="https://www.fao.org/india/news/detail-events/en/c/1734987/" target="blank" class="news__item">
+          <div class="news__title">FAO organized National Consultation with Farmers for Review 2025</div>
+          <p class="news__txt">The Food and Agriculture Organization of the United Nations (FAO), in collaboration with Watershed Support Services and Activities Network (WASSAN), organized a critical National Consultation with farmers on 7 March 2025.</p>
+          <div class="news__img"><img src="news5.jpg" alt="news"></div>
+        </a>
+      </div>
+
+     </div> <!-- Repeat other slides similarly -->
+ 
+    <div class="news-slider__ctr">
+      <button class="news-slider__arrow news-slider-prev">←</button>
+      <button class="news-slider__arrow news-slider-next">→</button>
+      <div class="news-slider__pagination"></div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="container my-5">
+  <div class="row">
+  
+
+    <!-- Right column: Twitter Feed -->
+    <div class="col-md-6">
+      <h5 class="mb-3">FAO India on X (Twitter)</h5>
+      <div class="card shadow-sm p-3" style="height: 300px; overflow-y: auto;">
+     <a class="twitter-timeline" href="https://twitter.com/TwitterDev">Tweets by TwitterDev</a>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+      </div>
+
+  
+    </div>
+
+
+<div class="col-md-6">
+  <h5 class="mb-3">In the News</h5>
+  <div class="card shadow-sm p-3" style="height: 300px; color:blue;overflow-y: auto;">
+    
+    <a href="https://ddnews.gov.in/en/natures-groceries-and-safety-net-how-forests-help-feed-the-world-better/" target="_blank" style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px; text-decoration: none; color: inherit;">
+      <img src="thumnail1.jpg" alt="Article Thumbnail" style="width: 80px; height: 60px; object-fit: cover; flex-shrink: 0;">
+      <div>
+        <h6 style="margin: 0 0 5px;">Nature’s Groceries and Safety Net – How Forests Help Feed the World Better</h6>
+      
+      </div>
+    </a>
+
+    <a href="https://theprint.in/opinion/agroforestry-in-india-5-states-show-how-forests-agriculture-can-thrive/2556786/" target="_blank" style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px; text-decoration: none; color: inherit;">
+      <img src="imges/Thumnail2.jpg" alt="Article Thumbnail" style="width: 80px; height: 60px; object-fit: cover; flex-shrink: 0;">
+      <div>
+        <h6 style="margin: 0 0 5px;">Forests and agriculture can thrive together. 5 Indian states show how</h6>
+        
+      </div>
+    </a>
+
+    <a href="https://www.hindustantimes.com/opinion/securing-veterinary-health-to-ensure-a-safer-future-for-all-101745505289079.html?utm_source=twitter/" target="_blank" style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px; text-decoration: none; color: inherit;">
+      <img src="imges/Thumbnail3.jpg" alt="Article Thumbnail" style="width: 80px; height: 60px; object-fit: cover; flex-shrink: 0;">
+      <div>
+        <h6 style="margin: 0 0 5px;">Securing veterinary health to ensure a safer future for all</h6>
+    
+      </div>
+    </a>
+
+  
+
+<a href="twittertest.html" style="text-align:center;" >Read More</a>
+
+  </div>
+</div>
+  </div>
+</div>
+
+
+
+
+</main>
+<footer class="custom-footer mt-auto w-100">
+  <div class="container-fluid">
+    <div class="row text-center text-md-start">
+      <div class="col-12 col-md-3 mb-4 mb-md-0">
+        <h5>About FAO-India</h5>
+        <p>Learn more about FAO's mission and work in India to support in transforming India's agrifood systems.</p>
+        <a href="https://www.fao.org/india/en/" target="_blank" class="text-light">Visit FAO-India Website</a>
+
+
+      </div>
+      <div class="col-12 col-md-3 mb-4 mb-md-0">
+        <h5>Quick Links</h5>
+        <ul class="list-unstyled">
+          <li><a href="https://greenag.nmsa.gov.in/" target="_blank" class="text-light" style="font-size:0.8rem">GEF-6: Green-Ag</a></li>
+          <li><a href="https://folur.amnex.co.in/" target="_blank" class="text-light"  style="font-size:0.8rem">GEF-7: FOLUR</a></li>
+          
+        </ul>
+      </div>
+      <div class="col-12 col-md-3 mb-4 mb-md-0">
+        <h5>Connect With Us</h5>
+        <p>Stay informed via our social channels and email newsletters.</p>
+        
+        <a href="https://x.com/FAO" target="_blank" class="text-light d-block" style="color:blue;">X</a>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>FAO Representation in India</h5>
+        <p>55 Lodi Estate<br>Max Muller Marg<br>New Delhi- 110 003<br>Tel: +91-11-46532201<br>FAO-IN@fao.org</p>
+
+
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- Scripts -->
+<!-- Twitter Script Loader -->
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/js/swiper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Scripts -->
+ 
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script>
+  var swiper = new Swiper('.news-slider', {
+  effect: 'coverflow',
+  grabCursor: true,
+  loop: true,
+  centeredSlides: true,
+  keyboard: true,
+  slidesPerView: 'auto',
+  spaceBetween: 0,
+ slidesOffsetBefore: 15,
+  slidesOffsetAfter: 25,
+  speed: 600,
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false
+  },
+  coverflowEffect: {
+    rotate: 0,
+    stretch: 0,
+    depth: 100,
+    modifier: 3,
+    slideShadows: false
+  },
+  navigation: {
+    nextEl: '.news-slider-next',
+    prevEl: '.news-slider-prev'
+  },
+ pagination: {
+  el: '.news-slider__pagination',
+  clickable: true,
+},
+});
+
+const barCtx = document.getElementById('barChart').getContext('2d');
+new Chart(barCtx, {
+  type: 'bar',
+  data: {
+    labels: ['AP', 'MP', 'Odisha', 'UK', 'Mizoram'],
+    datasets: [{
+      label: 'No Of Workshop',
+      data: [20, 25, 23, 15, 17],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.7)',
+        'rgba(54, 162, 235, 0.7)',
+        'rgba(255, 206, 86, 0.7)',
+        'rgba(255, 99, 132, 0.7)',
+        'rgba(75, 192, 192, 0.7)'
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(255, 99, 132, 1)',
+        'rgba(75, 192, 192, 1)'
+      ],
+      borderWidth: 1
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { labels: { color: 'black' } }
+    },
+    scales: {
+      x: {
+        ticks: { color: 'black' },
+        grid: { display: false }
+      },
+      y: {
+        beginAtZero: true,
+        ticks: { color: 'black' },
+        grid: { display: false }
+      }
+    }
+  }
+});
+
+</script>
+ 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+  google.charts.load('current', { 'packages': ['geochart'] });
+  google.charts.setOnLoadCallback(drawVisualization);
+
+  let geochart, data, opts;
+
+  const stateProjectDetails = {
+    'Uttar Pradesh': 'Total No of Projects: 1',
+    'Maharashtra': 'Total No of Projects: 1',
+    'Bihar': 'Total No Of Projects: ',
+    'Odisha': 'Total No Of projects: 6 ',
+    'Madhya Pradesh': 'Total No of Projects: 4',
+    'West Bengal': 'Total No of projects: ',
+    'Gujarat': 'Total No of projects: 3',
+    'Tamil Nadu': 'Total No of projects : ',
+    'Karnataka': 'Total No Of Projects: 1',
+    'Rajasthan': 'Total No Projects: 4',
+    'Andhra Pradesh': 'Total No of Projects: 2',
+    'Telangana': 'Total No Of Projects: ',
+    'Kerala': 'Total No Of Projects: 1',
+    'Jharkhand': 'Total No Of Projects: ',
+    'Assam': 'Total No of Projects: 1',
+    'Punjab': 'Total No Of Projects: 2',
+    'Chhattisgarh': 'Total No of Projects: 2 ',
+    'Haryana': 'Total No of Projects: 2',
+    'Jammu & Kashmir': 'Total No of pojects:',
+    'Uttarakhand': 'Total No Of Projects: 2',
+    'Himachal Pradesh': 'Total No Of Projects: ',
+    'Tripura': 'Total No Of Projects: ',
+    'Meghalaya': 'Total No Of Projects: 1',
+    'Manipur': 'Total No of Projects: ',
+    'Nagaland': 'Total No of Projects: 1',
+    'Goa': 'Total No Of Projects: ',
+    'Arunachal Pradesh': 'Total No Of Projects: ',
+    'Mizoram': 'ToTal No of projects: 1',
+    'Sikkim': 'Total No Of Projects: ',
+    'Delhi': 'Total No Of Projects: ',
+    'Puducherry': 'Total No Of Projects: ',
+    'Chandigarh': 'Total No Of Projects: ',
+    'Andaman and Nicobar Islands': 'Total No Of Projects :',
+    'Dadra and Nagar Haveli and Daman and Diu': 'Total No of Projects: ',
+    'Lakshadweep': 'Total No Of Projects: '
+  };
+
+  function drawVisualization() {
+    data = google.visualization.arrayToDataTable([
+      ['State Code', 'State', 'Projects'],
+      ['IN-UP', 'Uttar Pradesh', 1],
+      ['IN-MH', 'Maharashtra', 5],
+      ['IN-BR', 'Bihar', 4],
+      ['IN-OR', 'Odisha', 6],
+      ['IN-MP', 'Madhya Pradesh', 3],
+      ['IN-WB', 'West Bengal', 4],
+      ['IN-GJ', 'Gujarat', 6],
+      ['IN-TN', 'Tamil Nadu', 4],
+      ['IN-KA', 'Karnataka', 5],
+      ['IN-RJ', 'Rajasthan', 4],
+      ['IN-AP', 'Andhra Pradesh', 6],
+      ['IN-TG', 'Telangana', 5],
+      ['IN-KL', 'Kerala', 5],
+      ['IN-JH', 'Jharkhand', 4],
+      ['IN-AS', 'Assam', 4],
+      ['IN-PB', 'Punjab', 6],
+      ['IN-CT', 'Chhattisgarh', 6],
+      ['IN-HR', 'Haryana', 6],
+      ['IN-JK', 'Jammu & Kashmir', 4],
+      ['IN-UT', 'Uttarakhand', 6],
+      ['IN-HP', 'Himachal Pradesh', 4],
+      ['IN-TR', 'Tripura', 4],
+      ['IN-ML', 'Meghalaya', 5],
+      ['IN-MN', 'Manipur', 4],
+      ['IN-NL', 'Nagaland', 5],
+      ['IN-GA', 'Goa', 4],
+      ['IN-AR', 'Arunachal Pradesh', 6],
+      ['IN-MZ', 'Mizoram', 5],
+      ['IN-SK', 'Sikkim', 6],
+      ['IN-DL', 'Delhi', 0],
+      ['IN-PY', 'Puducherry', 4],
+      ['IN-CH', 'Chandigarh', 4],
+      ['IN-AN', 'Andaman and Nicobar Islands', 4],
+      ['IN-DN', 'Dadra and Nagar Haveli and Daman and Diu', 4],
+      ['IN-DD', 'Dadra and Nagar Haveli and Daman and Diu', 4],
+      ['IN-LD', 'Lakshadweep', 4]
+    ]);
+
+    opts = {
+      region: 'IN',
+      domain: 'IN',
+      displayMode: 'regions',
+      resolution: 'provinces',
+      backgroundColor: 'white',
+      defaultColor: '#f5f5f5',
+      colorAxis: {
+        values: [3, 5, 7, 10],
+        colors: ['#FB8A9C', '#ffcc99', '#EFC3CA', '#FEE580']
+      }
+    };
+
+    geochart = new google.visualization.GeoChart(document.getElementById('visualization'));
+    geochart.draw(data, opts);
+
+    google.visualization.events.addListener(geochart, 'select', function () {
+      const selection = geochart.getSelection();
+      if (selection.length > 0) {
+        const row = selection[0].row;
+        const stateName = data.getValue(row, 1);
+const info = stateProjectDetails[stateName];
+
+document.getElementById('modalBodyContent').innerHTML = info
+  ? `<strong>State:</strong> ${stateName}<br><br>${info}`
+  : `<strong>State:</strong> ${stateName}<br><br><em>No detailed info available.</em>`;
+
+// Update link to pass state as query parameter
+document.getElementById('viewDetailsLink').href = `ProjectDetails.html?state=${encodeURIComponent(stateName)}`;
+
+const modal = new bootstrap.Modal(document.getElementById('stateModal'));
+modal.show();
+
+      }
+    });
+  }
+
+  // Redraw on resize
+  window.addEventListener('resize', () => {
+    if (geochart && data && opts) {
+      geochart.draw(data, opts);
+    }
+  });
+</script>
+<script>
+  $(document).ready(function(){
+    $('.kpi-slider').slick({
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      autoplay: false,
+      arrows: true,
+      dots: true,
+      responsive: [
+        {
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 2
+          }
+        },
+        {
+          breakpoint: 576,
+          settings: {
+            slidesToShow: 1
+          }
+        }
+      ]
+    });
+  });
+</script>
+<script>
+  const totalMembers = 230;
+  const maleCount = 100;
+  const femaleCount = totalMembers - maleCount; // Automatically calculates
+
+  const malePercent = (maleCount / totalMembers) * 100;
+  const femalePercent = (femaleCount / totalMembers) * 100;
+
+  const totalHeight = 128;
+
+  function updateGenderChart(percent, fillRectId, textId, position) {
+    const fillY = totalHeight - (percent / 100) * totalHeight;
+    const fillRect = document.getElementById(fillRectId);
+    const text = document.getElementById(textId);
+
+    fillRect.setAttribute('y', fillY);
+    text.textContent = `${percent.toFixed(1)}%`; // Show 1 decimal place
+    text.style.top = `${Math.max(5, fillY - 20)}px`;
+
+    if (position === 'left') {
+      text.style.left = `0`;
+      text.style.right = `auto`;
+      text.style.textAlign = 'left';
+    } else if (position === 'right') {
+      text.style.right = `0`;
+      text.style.left = `auto`;
+      text.style.textAlign = 'right';
+    }
+  }
+
+  updateGenderChart(malePercent, 'maleFillRect', 'malePercentText', 'left');
+  updateGenderChart(femalePercent, 'femaleFillRect', 'femalePercentText', 'right');
+</script>
+
+  
+
+  <script>
+    // Initialize lightbox
+    const lightbox = GLightbox({ selector: '.glightbox' });
+
+    // Initialize Swiper
+ const bannerSwiper = new Swiper('.mySwiper', {
+  loop: true,
+  autoplay: {
+    delay: 3000,
+    disableOnInteraction: true,
+    pauseOnMouseEnter: true,
+  },
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  on: {
+    slideChangeTransitionStart: function () {
+      document.querySelectorAll('.swiper-slide img').forEach(img => {
+        img.classList.remove('zoom-animate');
+      });
+    },
+    slideChangeTransitionEnd: function () {
+      const activeSlideImg = this.slides[this.activeIndex].querySelector('img');
+      if (activeSlideImg) {
+        activeSlideImg.classList.add('zoom-animate');
+      }
+    },
+  },
+});
+
+
+    // Start zoom animation on initial slide image
+    window.addEventListener('load', () => {
+      const initialImg = document.querySelector('.swiper-slide-active img');
+      if (initialImg) {
+        initialImg.classList.add('zoom-animate');
+      }
+    });
+  </script>
+
+
+
+
+<script src="main/js/popper.min.js"></script>
+  <script src="main/js/bootstrap.min.js"></script>
+  <script src="main/js/scripts.js"></script>
+
+
+<script>
+  let idleTimer;
+  const idleDelay = 5 * 60 * 1000; 
+  const sequence = ["kpi-section", "chart-section", "cards-section", "news-section", "banner-section"];
+  let idleLoopActive = false;
+
+function resetIdleTimer() {
+  clearTimeout(idleTimer);
+
+  if (idleLoopActive) {
+    idleLoopActive = false;
+    document.body.classList.remove("idle-mode");
+
+    sequence.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.style.opacity = "1";
+        el.style.display = "block";
+        el.classList.remove("idle-section", "show");
+      }
+    });
+
+    // Update Swiper when returning from idle
+    if (typeof bannerSwiper !== "undefined") {
+      bannerSwiper.update();
+      const activeImg = document.querySelector('#banner-section .swiper-slide-active img');
+      if (activeImg) {
+        activeImg.classList.remove('zoom-animate');
+        void activeImg.offsetWidth;
+        activeImg.classList.add('zoom-animate');
+      }
+    }
+  }
+
+  idleTimer = setTimeout(startIdleMode, idleDelay);
+}
+  function startIdleMode() {
+    document.body.classList.add("idle-mode");
+    idleLoopActive = true;
+    runIdleLoop();
+  }
+
+ function runIdleLoop(index = 0) {
+  if (!idleLoopActive) return;
+
+  const currentId = sequence[index];
+
+  sequence.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.style.display = id === currentId ? "block" : "none";
+      el.classList.remove("idle-section", "show");
+    }
+  });
+
+  const el = document.getElementById(currentId);
+  if (el) {
+    requestAnimationFrame(() => {
+      el.classList.add("idle-section", "show");
+      el.style.opacity = "1";
+
+      if (currentId === "banner-section" && typeof bannerSwiper !== "undefined") {
+        bannerSwiper.update();
+        bannerSwiper.navigation.init();       
+        bannerSwiper.navigation.update();     
+        bannerSwiper.autoplay.start();
+
+        const activeImg = el.querySelector('.swiper-slide-active img');
+        if (activeImg) {
+          activeImg.classList.remove('zoom-animate');
+          void activeImg.offsetWidth;
+          activeImg.classList.add('zoom-animate');
+        }
+      }
+    });
+  }
+
+  setTimeout(() => {
+    runIdleLoop((index + 1) % sequence.length);
+  }, 10000);
+}
+
+
+
+  ["mousemove", "keydown", "click", "touchstart"].forEach(evt =>
+    document.addEventListener(evt, resetIdleTimer, false)
+  );
+
+  resetIdleTimer();
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const videoCards = document.querySelectorAll(".video-card");
+    const videoModal = new bootstrap.Modal(document.getElementById("videoModal"));
+    const popupVideo = document.getElementById("popupVideo");
+
+    videoCards.forEach(card => {
+      card.addEventListener("click", function () {
+        const videoUrl = card.getAttribute("data-video-url");
+
+        // Clear existing content
+        popupVideo.pause();
+        popupVideo.src = "";
+
+        // Check if it's a YouTube link
+        if (videoUrl.includes("youtube.com") || videoUrl.includes("youtu.be")) {
+          const youtubeId = getYouTubeID(videoUrl);
+          popupVideo.style.display = "none";
+          popupVideo.insertAdjacentHTML('afterend', `
+            <iframe id="youtubeIframe" class="w-100" height="400" src="https://www.youtube.com/embed/${youtubeId}?autoplay=1" 
+            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          `);
+        } else {
+          // For direct .mp4 videos
+          popupVideo.style.display = "block";
+          popupVideo.src = videoUrl;
+          popupVideo.play();
+          const existingIframe = document.getElementById("youtubeIframe");
+          if (existingIframe) existingIframe.remove();
+        }
+
+        videoModal.show();
+      });
+    });
+
+    // Clean up on modal hide
+    document.getElementById("videoModal").addEventListener("hidden.bs.modal", () => {
+      popupVideo.pause();
+      popupVideo.src = "";
+      const existingIframe = document.getElementById("youtubeIframe");
+      if (existingIframe) existingIframe.remove();
+    });
+
+    function getYouTubeID(url) {
+      const regExp = /(?:youtube\.com.*(?:v=|\/embed\/)|youtu\.be\/)([a-zA-Z0-9_-]+)/;
+      const match = url.match(regExp);
+      return match ? match[1] : null;
+    }
+  });
+</script>
+</body>
+</html>
