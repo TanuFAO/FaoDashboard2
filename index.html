@@ -451,6 +451,28 @@ canvas {
 
 
 
+	#kpi-hover-popup {
+  position: absolute;
+  display: none;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  z-index: 1000;
+  width: 300px;
+}
+
+#kpi-hover-popup canvas {
+  width: 100% !important;
+  height: auto !important;
+}
+
+#kpi-popup {
+  scroll-behavior: smooth;
+}
+
+
  #stateModal .modal-body {
     color: black;
   }
@@ -551,32 +573,32 @@ canvas {
   <div id="banner-section" class="swiper mySwiper">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
-        <a href="banner/banner1.JPG" class="glightbox" data-gallery="banner">
-          <img src="banner/banner1.JPG" alt="Slide 1" />
+        <a href="banner/banner1.jpg" class="glightbox" data-gallery="banner">
+          <img src="banner/banner1.jpg" alt="Slide 1" />
         </a>
         <div class="slide-caption"></div>
       </div>
       <div class="swiper-slide">
-        <a href="banner/banner2.JPG" class="glightbox" data-gallery="banner">
-          <img src="banner/banner2.JPG" alt="Slide 2" />
+        <a href="banner/banner2.jpg" class="glightbox" data-gallery="banner">
+          <img src="banner/banner2.jpg" alt="Slide 2" />
         </a>
         <div class="slide-caption"></div>
       </div>
       <div class="swiper-slide">
-        <a href="banner/banner3.JPG" class="glightbox" data-gallery="banner">
-          <img src="banner/banner3.JPG" alt="Slide 3" />
+        <a href="banner/banner3.jpg" class="glightbox" data-gallery="banner">
+          <img src="banner/banner3.jpg" alt="Slide 3" />
         </a>
         <div class="slide-caption"></div>
       </div>
       <div class="swiper-slide">
-        <a href="banner/banner4.JPG" class="glightbox" data-gallery="banner">
-          <img src="banner/banner4.JPG" alt="Slide 4" />
+        <a href="banner/banner4.jpg" class="glightbox" data-gallery="banner">
+          <img src="banner/banner4.jpg" alt="Slide 4" />
         </a>
         <div class="slide-caption"></div>
       </div>
       <div class="swiper-slide">
-        <a href="banner/banner5.JPG" class="glightbox" data-gallery="banner">
-          <img src="banner/banner5.JPG" alt="Slide 4" />
+        <a href="banner/banner5.jpg" class="glightbox" data-gallery="banner">
+          <img src="banner/banner5.jpg" alt="Slide 4" />
         </a>
         <div class="slide-caption"></div>
       </div>
@@ -593,12 +615,12 @@ canvas {
 
 
   <!-- Parallax Section 1 -->
-  <section class="parallax-section" style="background-image: url('banner/banner1.JPG');">
+  <section class="parallax-section" style="background-image: url('banner/banner1.jpg');">
     
   </section>
 
   <!-- Parallax Section 2 -->
-  <section class="parallax-section" style="background-image: url('banner/banner2.JPG');">
+  <section class="parallax-section" style="background-image: url('banner/banner2.jpg');">
     <div class="parallax-content">
       <h2>Project Portfolio</h2>
       <p>Implemented Across 28 States</p>
@@ -629,98 +651,115 @@ canvas {
   <div class="row text-center align-items-stretch">
 
       
-   <div class="col-md-4 mb-3 d-flex">
-       <a href="ProjectDetails.html" class="text-black text-decoration-none w-100">
+     <div class="col-md-4 mb-3 d-flex">
+      <a href="ProjectDetails.html" class="text-black text-decoration-none w-100">
+        <div class="p-3 rounded w-100 d-flex justify-content-between align-items-center" 
+             style="background-color: #FB8A9C;" data-popup="budget">
+          <div class="me-3">
+           <i class="fa-solid fa-sack-dollar mb-2" style="font-size: clamp(20px, 3vw, 40px); margin-top:7px;"></i>
 
-    <div class="p-3 rounded w-100" style="background-color: #FB8A9C;">
-          
-          <i class="fa-solid fa-sack-dollar fs-2 mb-2"></i>
-          <div>Total Budget</div>
-          <strong>$ 100 million</strong>
-         
+            <div style="font-size: clamp(18px, 2vw, 22px);">Total Budget</div>
+          </div>
+          <div class="text-end flex-grow-1">
+            <strong style="font-size: clamp(18px, 2.5vw, 25px);">$ 100 million</strong>
+          </div>
         </div>
-	 </a>
-      </div>
+      </a>
+    </div>
 
-      <div class="col-md-4 mb-3 d-flex">
-               <a href="ProjectDetails.html" class="text-black text-decoration-none w-100">
-        <div class="p-3 rounded w-100" style="background-color: #ffcc99;">
-           <i class="bi bi-kanban fs-2 mb-2"></i>
-          <div>Total Projects</div>
-          <strong>25</strong>
-	</div>
-	</a>
+
+<div class="col-md-4 mb-3 d-flex">
+  <a href="ProjectDetails.html" class="text-black text-decoration-none w-100">
+    <div class="p-3 rounded w-100 d-flex justify-content-between align-items-center" style="background-color: #ffcc99;">
+      <div class="me-3">
+        <i class="bi bi-kanban mb-2" style="font-size: clamp(20px, 3vw, 40px);"></i>
+	<div style="font-size: clamp(18px, 2vw, 22px);">Total Projects</div>
       </div>
-      <div class="col-md-4 mb-3 d-flex">
-       <a href="ProjectDetails.html" class="text-black text-decoration-none w-100">
-        <div class="p-3 rounded w-100" style="background-color: #FEE580;">
-          <i class="fa-solid fa-list fs-2 mb-2"></i>
-          <div>Total States</div>
-          <strong>28</strong>
+      <div class="text-end flex-grow-1">
+        
+        <strong style="font-size: clamp(18px, 2.5vw, 25px);">25</strong>
+      </div>
+    </div>
+  </a>
+</div>
+
+<!-- Total Training -->
+    <div class="col-md-4 mb-3 d-flex">
+      <a href="ProjectDetails.html" class="text-black text-decoration-none w-100">
+        <div class="p-3 rounded w-100 d-flex justify-content-between align-items-center" 
+             style="background-color: #FEE580;" data-popup="training">
+          <div class="me-3">
+            <i class="bi bi-mortarboard mb-2" style="font-size: clamp(20px, 3vw, 40px);"></i>
+            <div style="font-size: clamp(18px, 2vw, 22px);">Total Training</div>
+          </div>
+          <div class="text-end flex-grow-1">
+            <strong style="font-size: clamp(18px, 2.5vw, 25px);">2125</strong>
+          </div>
         </div>
-</a>
-      </div>
+      </a>
+    </div>
+
 
 </div>
 </div>
 
-  <!-- Bottom Row -->
   <div>
-   
-       <div class="kpi-slider" style="margin-bottom:40px">
+  <div class="kpi-slider" style="margin-bottom:40px">
     <div class="row text-center align-items-stretch">
-      <div class="col-md-4 mb-3 d-flex">
-       <div class="p-3 rounded w-100" style="background-color: #4BC0C0;">
 
-          <i class="bi bi-people-fill fs-2 mb-2"></i>
-          <div>Total Beneficiary</div>
-          <strong>7731</strong>
-        </div>
-      </div>
+      <!-- Beneficiary Card -->
       <div class="col-md-4 mb-3 d-flex">
-        <div class="p-3 rounded w-100" style="background-color: #E7DDFF;">
-          <i class="bi bi-clipboard-check fs-2 mb-2"></i>
-          <div>Area covered</div>
-          <strong>4826.3Ha</strong>
+        <div class="p-3 rounded w-100 d-flex justify-content-between align-items-center" style="background-color: #4BC0C0;" data-chart="Beneficiary" data-type="bar">
+          <div class="me-3 text-center">
+            <i class="bi bi-people-fill mb-2" style="font-size: clamp(20px, 3vw, 40px);"></i>
+            <div style="font-size: clamp(18px, 2vw, 22px);">Total Beneficiary</div>
+          </div>
+          <div class="text-end flex-grow-1">
+            <strong style="font-size: clamp(18px, 2.5vw, 25px);">7731</strong>
+          </div>
         </div>
       </div>
+
+      <!-- Area Card -->
       <div class="col-md-4 mb-3 d-flex">
-        <div class="p-3 rounded w-100" style="background-color: #EFC3CA;">
-          <i class="bi bi-journal-richtext fs-2 mb-2"></i>
-          <div>Total Training</div>
-          <strong>2125</strong>
+        <div class="p-3 rounded w-100 d-flex justify-content-between align-items-center" style="background-color: #E7DDFF;" data-chart="Area" data-type="pie">
+          <div class="me-3 text-center">
+            <i class="bi bi-clipboard-check mb-2" style="font-size: clamp(20px, 3vw, 40px);"></i>
+            <div style="font-size: clamp(18px, 2vw, 22px);">Area Covered</div>
+          </div>
+          <div class="text-end flex-grow-1">
+            <strong style="font-size: clamp(18px, 2.5vw, 25px);">4826.3 Ha</strong>
+          </div>
         </div>
       </div>
+
+      <!-- Training Card -->
+      <div class="col-md-4 mb-3 d-flex">
+        <div class="p-3 rounded w-100 d-flex justify-content-between align-items-center" style="background-color: #EFC3CA;" data-chart="Training" data-type="horizontal">
+          <div class="me-3 text-center">
+            <i class="bi bi-journal-richtext mb-2" style="font-size: clamp(20px, 3vw, 40px);"></i>
+            <div style="font-size: clamp(18px, 2vw, 22px);">Total Workshop</div>
+          </div>
+          <div class="text-end flex-grow-1">
+            <strong style="font-size: clamp(18px, 2.5vw, 25px);">15</strong>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
+
 
 
 
  <!-- Bottom Row -->
-  <div>
-   
-       <div class="kpi-slider">
-    <div class="row text-center align-items-stretch">
-      <div class="col-md-4 mb-3 d-flex">
-       <div class="p-3 rounded w-100" style="background-color: #96A78D;">
-
-          <i class="bi bi-people-fill fs-2 mb-2"></i>
-          <div>Total Workshop</div>
-          <strong>20</strong>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-</div>
-</div>
 
 
 
 
 <div>
-<h6 style="text-align: right; font-size: 8px;">Data updated till Sep 2025</h6></div>
+<h6 style="text-align:Right"> Data updated till 16 sep 2025</h6></div>
 
 
 
@@ -739,7 +778,7 @@ canvas {
      
       <!-- Male -->
       <div class="gender-block">
-        <div class="tooltip" style="background-color:white;color:black;">Male: 7362 out of 7731</div>
+        <div class="tooltip" style="background-color:#009688;color:black; font-weight:bold;">Male Beneficiary: 7362 out of 7731</div>
         <div class="percentage-text" id="malePercentText">80%</div>
         <svg viewBox="0 0 64 128">
           <defs>
@@ -756,7 +795,7 @@ canvas {
 
       <!-- Female -->
       <div class="gender-block">
-        <div class="tooltip" style="background-color:white;color:black;">Female: 369 out of 7731</div>
+        <div class="tooltip" style="background-color:#FFDBBB;color:black; font-weight:bold;">Female Beneficiary: 369 out of 7731</div>
         <div class="percentage-text" id="femalePercentText">75%</div>
         <svg viewBox="0 0 64 128">
           <defs>
@@ -781,10 +820,7 @@ canvas {
 
       <canvas id="barChart" class="w-100 mt-4" style="height: 180px;"></canvas>
 </div>
-  <div class="text-end mt-2">
-   <!-- <a href="#" style="color:blue; font-size:11px;">For more details</a> -->
 
-  </div>
     </div>
     <div class="col-md-6">
      
@@ -816,7 +852,7 @@ canvas {
 
 
 
-  <section class="parallax-section" style="background-image: url('banner/banner42.JPG');">
+  <section class="parallax-section" style="background-image: url('banner/banner42.jpg');">
     <div class="parallax-content">
      
     </div>
@@ -870,7 +906,7 @@ canvas {
 </div>
 
 
-    <section class="parallax-section" style="background-image: url('banner/banner5.JPG');">
+    <section class="parallax-section" style="background-image: url('banner/banner5.jpg');">
     <div class="parallax-content">
      
     </div>
@@ -926,7 +962,7 @@ canvas {
     height: 100vh;
     margin-left: calc(-50vw + 50%);
     margin-right: calc(-50vw + 50%);
-    background-image: url('banner/parallax1.JPG');
+    background-image: url('banner/parallax1.jpg');
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
@@ -951,14 +987,14 @@ canvas {
         <a href="https://www.fao.org/india/news/detail-events/en/c/1742283/" target="blank" class="news__item">
           <div class="news__title">Máximo Torero, Chief Economist, FAO presents the SOFI 2025 Report in New Delhi</div>
           <p class="news__txt">he Food and Agriculture Organization of the United Nations (FAO) organized a presentation-cum-discussion session on the State of Food Security and Nutrition in the World (SOFI) Report 2025 on 9 September 2025 at the UN House, New Delhi.</p>
-          <div class="news__img"><img src="News1.jpg" alt="news"></div>
+          <div class="news__img"><img src="news1.jpg" alt="news"></div>
         </a>
       </div>
       <div class="news-slider__item swiper-slide">
         <a href="https://www.fao.org/india/news/detail-events/en/c/1742245/" target="blank" class="news__item">
           <div class="news__title">FAO organizes Private Sector Engagement workshop to address AMR in the Apiary Sector</div>
           <p class="news__txt">On 29 August 2025, the Food and Agriculture Organization of the United Nations (FAO) in collaboration with FAO’s Regional Office for Asia and the Pacific (RAP) and the Food Safety and Standards Authority of India (FSSAI), organized the seventh Private Sector Engagement (PSE) Workshop on Antimicrobial Resistance (AMR) in Chandigarh. </p>
-          <div class="news__img"><img src="Milk.jpg" alt="news"></div>
+          <div class="news__img"><img src="milk.jpg" alt="news"></div>
         </a>
       </div>
       <div class="news-slider__item swiper-slide">
@@ -966,7 +1002,7 @@ canvas {
           <div class="news__title">FAO organized a National Workshop in New Delhi
 </div>
           <p class="news__txt">The Food and Agriculture Organization of the United Nations (FAO), in collaboration with the Ministry of Jal Shakti (MoJS), Government of India, convened a one-day national workshop on Operationalizing Modernized Command Area Development (MCAD) for Social and Economic Transformation.</p>
-          <div class="news__img"><img src="Nature.jpg" alt="news"></div>
+          <div class="news__img"><img src="nature.jpg" alt="news"></div>
         </a>
       </div>
       <div class="news-slider__item swiper-slide">
@@ -1058,7 +1094,6 @@ canvas {
 
 
 
-
 </main>
 <footer class="custom-footer mt-auto w-100">
   <div class="container-fluid">
@@ -1095,6 +1130,32 @@ canvas {
 </footer>
 
 
+
+<div id="kpi-hover-popup" style="
+  position: absolute;
+  display: none;
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  max-width: 600px; /* optional max */
+">
+  <canvas id="kpiBarChart"></canvas>
+</div>
+
+
+
+
+<div id="kpi-popup" 
+     style="position:absolute; display:none; background:white; border:1px solid #ccc; border-radius:8px;
+            box-shadow:0 4px 8px rgba(0,0,0,0.2); padding:10px; z-index:9999; 
+            width:400px; max-height:400px; overflow-y:auto; overflow-x:hidden;">
+  <canvas id="kpiChart" style="width:100%; display:block;"></canvas>
+</div>
+
+
+
+
 <!-- Scripts -->
 <!-- Twitter Script Loader -->
 
@@ -1104,6 +1165,8 @@ canvas {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/js/swiper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Scripts -->
@@ -1148,7 +1211,7 @@ new Chart(barCtx, {
   data: {
     labels: ['AP', 'MP', 'Odisha', 'UK', 'Mizoram'],
     datasets: [{
-      label: 'No Of Workshop',
+      label: 'No of Workshop',
       data: [20, 25, 23, 15, 17],
       backgroundColor: [
         'rgba(255, 99, 132, 0.7)',
@@ -1170,7 +1233,9 @@ new Chart(barCtx, {
   options: {
     responsive: true,
     plugins: {
-      legend: { labels: { color: 'black' } }
+       legend: {
+        display: false // <-- This removes the colored square and label
+      }
     },
     scales: {
       x: {
@@ -1195,41 +1260,40 @@ new Chart(barCtx, {
 
   let geochart, data, opts;
 
- 
   const stateProjectDetails = {
     'Uttar Pradesh': 'Total No of Projects: 1',
     'Maharashtra': 'Total No of Projects: 4',
-    'Bihar': 'Total No Of Projects: 0 ',
-    'Odisha': 'Total No Of projects: 5 ',
-    'Madhya Pradesh': 'Total No of Projects: 7',
+    'Bihar': 'Total No of Projects: 0 ',
+    'Odisha': 'Total No of projects: 6 ',
+    'Madhya Pradesh': 'Total No of Projects: 6',
     'West Bengal': 'Total No of projects: 0 ',
     'Gujarat': 'Total No of projects: 3',
     'Tamil Nadu': 'Total No of projects : 1',
-    'Karnataka': 'Total No Of Projects: 1',
+    'Karnataka': 'Total No of Projects: 1',
     'Rajasthan': 'Total No Projects: 4',
     'Andhra Pradesh': 'Total No of Projects: 3',
-    'Telangana': 'Total No Of Projects: 3',
-    'Kerala': 'Total No Of Projects: 1',
+    'Telangana': 'Total No of Projects: 3',
+    'Kerala': 'Total No of Projects: 1',
     'Jharkhand': 'Total No Of Projects: 1',
     'Assam': 'Total No of Projects: 1',
-    'Punjab': 'Total No Of Projects: 2',
+    'Punjab': 'Total No of Projects: 2',
     'Chhattisgarh': 'Total No of Projects: 2 ',
     'Haryana': 'Total No of Projects: 2',
     'Jammu & Kashmir': 'Total No of pojects: 0',
-    'Uttarakhand': 'Total No Of Projects: 2',
-    'Himachal Pradesh': 'Total No Of Projects: 0',
-    'Tripura': 'Total No Of Projects:0 ',
-    'Meghalaya': 'Total No Of Projects: 1',
+    'Uttarakhand': 'Total No of Projects: 2',
+    'Himachal Pradesh': 'Total No of Projects: 0',
+    'Tripura': 'Total No of Projects:0 ',
+    'Meghalaya': 'Total No of Projects: 1',
     'Manipur': 'Total No of Projects: 0',
     'Nagaland': 'Total No of Projects: 1',
-    'Goa': 'Total No Of Projects: 0',
-    'Arunachal Pradesh': 'Total No Of Projects:0 ',
+    'Goa': 'Total No of Projects: 0',
+    'Arunachal Pradesh': 'Total No of Projects:0 ',
     'Mizoram': 'ToTal No of projects: 1',
-    'Sikkim': 'Total No Of Projects: 1',
-    'Delhi': 'Total No Of Projects: 1',
-    'Puducherry': 'Total No Of Projects: 0',
-    'Chandigarh': 'Total No Of Projects: 0',
-    'Andaman and Nicobar Islands': 'Total No Of Projects :0',
+    'Sikkim': 'Total No of Projects: 1',
+    'Delhi': 'Total No of Projects: 1',
+    'Puducherry': 'Total No of Projects: 0',
+    'Chandigarh': 'Total No of Projects: 0',
+    'Andaman and Nicobar Islands': 'Total No of Projects :0',
     'Dadra and Nagar Haveli and Daman and Diu': 'Total No of Projects: 1',
     'Lakshadweep': 'Total No Of Projects: 0'
   };
@@ -1240,8 +1304,8 @@ new Chart(barCtx, {
       ['IN-UP', 'Uttar Pradesh', 1],
       ['IN-MH', 'Maharashtra', 4],
       ['IN-BR', 'Bihar', 0],
-      ['IN-OR', 'Odisha', 5],
-      ['IN-MP', 'Madhya Pradesh', 7],
+      ['IN-OR', 'Odisha', 6],
+      ['IN-MP', 'Madhya Pradesh', 6],
       ['IN-WB', 'West Bengal', 0],
       ['IN-GJ', 'Gujarat', 3],
       ['IN-TN', 'Tamil Nadu', 1],
@@ -1435,8 +1499,8 @@ modal.show();
 
 <script>
   let idleTimer;
-  const idleDelay = 5 * 60 * 1000; 
-  const sequence = ["kpi-section", "chart-section", "cards-section", "news-section", "banner-section"];
+  const idleDelay = 1 * 60 * 1000; 
+  const sequence = ["kpi-section", "chart-section", "cards-section", "video-section","news-section", "banner-section"];
   let idleLoopActive = false;
 
 function resetIdleTimer() {
@@ -1603,6 +1667,347 @@ function resetIdleTimer() {
       });
     });
   </script>
+
+
+
+<!-- Include Chart.js and DataLabels plugin -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const popup = document.getElementById('kpi-hover-popup');
+  const ctx = document.getElementById('kpiBarChart').getContext('2d');
+  let currentChart = null;
+
+  // Register DataLabels globally
+  Chart.register(ChartDataLabels);
+
+  // Project-wise data for each KPI
+  const projectData = {
+    
+    Beneficiary: {
+      
+      labels: ['TCP/IND/3905', 'TCP/IND/4002', 'TCP/IND/4004', 'GCP/IND/184/GFF', 'OSRO/IND/203/USA', 'GCP/IND/202/PAF '],
+      data: [54, 13, 70, 7400, 162, 32]
+    },
+    Area: {
+      title: 'Area Covered by Project (Ha)',
+      labels: ['GCP/IND/184/GFF', 'GCP/IND/183/GFF'],
+      data: [4826, 5826]
+    },
+    Training: {
+     
+      labels: ['TCP/IND/3901', 'TCP/IND/3902', 'TCP/IND/3903', 'TCP/IND/3905', 'TCP/IND/4002', 'TCP/IND/4004', 'OSRO/IND/203/USA', 'GCP/IND/202/PAF '],
+      data: [2, 1, 1, 1, 2, 4, 2, 1]
+    }
+  };
+
+  // Attach hover events to KPI cards
+  document.querySelectorAll('.kpi-slider .p-3.rounded').forEach(card => {
+    card.addEventListener('mouseenter', (e) => {
+      const type = card.getAttribute('data-chart');
+      const chartType = card.getAttribute('data-type');
+      showPopup(e, type, chartType);
+    });
+
+    card.addEventListener('mousemove', (e) => {
+      positionPopup(e);
+    });
+
+    card.addEventListener('mouseleave', () => {
+      popup.style.display = 'none';
+      if (currentChart) currentChart.destroy();
+    });
+  });
+
+  function showPopup(e, kpiKey, chartType) {
+    const dataObj = projectData[kpiKey];
+    if (!dataObj) return;
+
+    popup.style.display = 'block';
+    positionPopup(e);
+
+    const canvas = document.getElementById('kpiBarChart');
+
+    // Adjust canvas size based on chart type & content
+    if (chartType === 'pie') {
+      canvas.width = 300;
+      canvas.height = 300;
+    } else if (chartType === 'horizontal') {
+      canvas.height = dataObj.labels.length * 45; // dynamic height for each bar
+      canvas.width = 500;
+    } else { // vertical bar
+      canvas.width = Math.max(dataObj.labels.length * 80, 400);
+      canvas.height = 450;
+    }
+
+    if (currentChart) currentChart.destroy();
+
+    let config = {
+      type: chartType === 'horizontal' ? 'bar' : chartType,
+      data: {
+        labels: dataObj.labels,
+        datasets: [{
+          label: dataObj.title,
+          data: dataObj.data,
+          backgroundColor: [
+            '#4BC0C0', '#FB8A9C', '#FEE580', '#36A2EB', '#FF6384', '#4BC0C0', '#FB8A9C', '#FEE580'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: false,
+        maintainAspectRatio: false,
+        indexAxis: chartType === 'horizontal' ? 'y' : 'x',
+        plugins: {
+          legend: { display: chartType === 'pie' },
+          title: {
+            display: true,
+            text: dataObj.title,
+            font: { size: 14 }
+          },
+          datalabels: {
+            color: '#000',
+            font: { weight: 'bold', size: 12 },
+            anchor: 'end',
+            align: 'end',
+            formatter: value => value
+          }
+        },
+        scales: chartType === 'pie' ? {} :
+          (chartType === 'horizontal' ? {
+             x: {
+        beginAtZero: true,
+        ticks: {
+          stepSize: 1,
+          precision: 0,
+          color: '#000',   // <-- Make X-axis ticks black
+          font: { size: 14 }
+        }
+      },
+      y: {
+        type: 'category',
+        ticks: {
+          autoSkip: false,
+          color: '#000',   // <-- Make Y-axis ticks black
+          font: { size: 14 }
+        }
+            }
+          } : { // vertical bar
+            x: {
+              ticks: {
+                autoSkip: false,
+                maxRotation: 45,
+                minRotation: 45,
+		color: '#000', 
+                font: { size: 14 },
+                callback: function (value) {
+                  const label = this.getLabelForValue(value);
+                  return label.length > 10 ? label.match(/.{1,10}/g) : label;
+                }
+              }
+            },
+            y: {
+              beginAtZero: true,
+              ticks: {
+                stepSize: 500,  // <-- set numeric interval for vertical bars
+                precision: 0,
+		color: '#000', 
+                font: { size: 14 }
+              }
+            }
+          })
+      }
+    };
+
+    currentChart = new Chart(canvas.getContext('2d'), config);
+  }
+
+  function positionPopup(e) {
+  const popupRect = popup.getBoundingClientRect();
+  const viewportHeight = window.innerHeight;
+  const viewportWidth = window.innerWidth;
+
+  const offsetX = 20;
+  const offsetY = 20;
+
+  let left = e.pageX + offsetX;
+  let top = e.pageY + offsetY;
+
+  // Check if popup goes out of right side
+  if (left + popupRect.width > viewportWidth) {
+    left = e.pageX - popupRect.width - offsetX;
+    if (left < 0) left = 10; // fallback
+  }
+
+  // Check if popup goes out of bottom side
+  const spaceBelow = viewportHeight - (e.clientY + offsetY);
+  if (spaceBelow < popupRect.height) {
+    // Not enough space below → show above
+    top = e.pageY - popupRect.height - offsetY;
+    if (top < 0) top = 10; // fallback if even above doesn't fit
+  }
+
+  popup.style.left = left + 'px';
+  popup.style.top = top + 'px';
+}
+
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const popup = document.getElementById('kpi-popup');
+  const canvas = document.getElementById('kpiChart');
+  const ctx = canvas.getContext('2d');
+  let currentChart = null;
+  let isHoveringPopup = false;
+
+  // Example data
+  const projectBudgets = [
+    { name: 'TCP/IND/3901', budget: 232000 },
+    { name: 'TCP/IND/3902', budget: 100000 },
+    { name: 'TCP/IND/3903', budget: 169000 },
+    { name: 'TCP/IND/3904', budget: 100000 },
+    { name: 'TCP/IND/3905', budget: 213000 },
+    { name: 'TCP/IND/3906', budget: 216000 },
+    { name: 'TCP/IND/4001', budget: 100000 },
+    { name: 'TCP/IND/4002', budget: 336000 },
+     { name: 'TCP/IND/4003', budget: 100000 },
+      { name: 'TCP/IND/4004', budget: 300000 },
+    { name: 'GCP/IND/183/GFF', budget:  33558716  },
+    { name: 'GCP/IND/184/GFF', budget:  20366973  },
+    { name: 'OSRO/IND/203/USA', budget:  1200000  },
+    { name: 'GCP/IND/189/GCR', budget:  921659  },
+    { name: 'UNJP/IND/201/UNJ', budget:  1800000  },
+    { name: 'GCP /IND/202/PAF', budget:   4673000  },
+    { name: 'GCP /IND/11228/GFF', budget:   14039667   },
+    { name: 'GCP /IND/11228P/GFF', budget:   300000   },
+    { name: 'GCP /IND/11403/GFF', budget:   8641096   },
+    { name: 'GCP /IND/11415P/GFF', budget:   300000   },
+    { name: 'GCP /IND/11415/GFF', budget:   10409174   },
+    { name: 'GCP /IND/11228P/GFF', budget:   300000   },
+    { name: 'GCP /IND/11403P/GFF', budget:   200000   },
+ 
+   
+
+  ];
+
+  const projectTrainings = [
+    { name: 'TCP/IND/3903', trainings: 3 },
+    { name: 'TCP/IND/3905', trainings: 1 },
+    { name: 'TCP/IND/4002', trainings: 14 },
+    { name: 'TCP/IND/4004', trainings: 70 },
+    { name: 'GCP/IND/184/GFF', trainings: 2030 },
+    { name: 'OSRO/IND/203/USA', trainings: 6 },
+    { name: 'GCP/IND/202/PAF ', trainings: 1 }
+  ];
+
+  // Keep popup visible on hover
+  popup.addEventListener('mouseenter', () => { isHoveringPopup = true; });
+  popup.addEventListener('mouseleave', () => { isHoveringPopup = false; hidePopup(); });
+
+  function showPopup(e) {
+    popup.style.display = 'block';
+    positionPopup(e);
+  }
+
+  function hidePopup() {
+    popup.style.display = 'none';
+    if (currentChart) { currentChart.destroy(); currentChart = null; }
+  }
+
+ function positionPopup(e) {
+  const offsetX = 20;
+  const offsetY = 20;
+  const popupRect = popup.getBoundingClientRect();
+  const viewportWidth = window.innerWidth;
+  const viewportHeight = window.innerHeight;
+
+  let left = e.clientX + offsetX;
+  let top = e.clientY + offsetY;
+
+  // If popup goes beyond right edge → flip to left
+  if (left + popupRect.width > viewportWidth) {
+    left = e.clientX - popupRect.width - offsetX;
+  }
+
+  // If popup goes beyond bottom edge → flip to top
+  if (top + popupRect.height > viewportHeight) {
+    top = e.clientY - popupRect.height - offsetY;
+  }
+
+  popup.style.left = `${left + window.scrollX}px`;
+  popup.style.top = `${top + window.scrollY}px`;
+}
+
+
+  function attachHover(box, type) {
+    box.addEventListener('mouseenter', (e) => {
+      if (currentChart) { currentChart.destroy(); currentChart = null; }
+
+      let labels, data;
+      if(type === 'budget') {
+        labels = projectBudgets.map(p => p.name);
+        data = projectBudgets.map(p => p.budget);
+      } else if(type === 'training') {
+        labels = projectTrainings.map(p => p.name);
+        data = projectTrainings.map(p => p.trainings);
+      }
+
+      canvas.style.display = 'block';
+
+      // Auto switch chart orientation
+      const useHorizontal = labels.length > 6; 
+      canvas.height = useHorizontal ? labels.length * 40 : 400; 
+      canvas.width = useHorizontal ? 500 : Math.max(labels.length * 60, 400);
+
+      currentChart = new Chart(ctx, {
+        type: 'bar',
+        data: { labels, datasets: [{ data, backgroundColor: type==='budget' ? 'rgba(75,192,192,0.7)' : 'rgba(255,159,64,0.7)'}] },
+        options: {
+          indexAxis: useHorizontal ? 'y' : 'x',
+          responsive: false,
+          plugins: {
+            legend: { display: false },
+            datalabels: {
+              anchor: 'end',   // place on top of the bar
+              align: 'end',    // align top edge
+              color: '#000',
+              font: { weight: 'bold', size: 12 },
+              formatter: value => value.toLocaleString()
+            }
+          },
+          scales: {
+            x: { ticks: { color: '#000', beginAtZero: true } },
+            y: { ticks: { color: '#000', autoSkip: false } }
+          }
+        },
+        plugins: [ChartDataLabels]
+      });
+
+      showPopup(e);
+    });
+
+    box.addEventListener('mousemove', positionPopup);
+    box.addEventListener('mouseleave', () => {
+      setTimeout(() => { if(!isHoveringPopup) hidePopup(); }, 100);
+    });
+  }
+
+  attachHover(document.querySelector('[data-popup="budget"]'), 'budget');
+  attachHover(document.querySelector('[data-popup="training"]'), 'training');
+});
+</script>
+
 
 </body>
 </html>
